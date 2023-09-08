@@ -1,5 +1,5 @@
 import React from 'react';
-import a from '../assets/1.png'
+import a from '../assets/0.png'
 const ImageGrid = () => {
   // Generate an array of image filenames
   const imageCount = 1; // Change this to the number of images you have
