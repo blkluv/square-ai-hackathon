@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import 'babel-polyfill';
 import ImageGrid from './components/sidebar'
 import SpeechRecognizer from './components/SpeechRecognizer'
 import reactLogo from './assets/react.svg'
@@ -13,7 +14,7 @@ function App() {
     <>
       <ImageGrid />
       <Layout />
-      <SpeechRecognition />
+      <SpeechRecognizer />
     </>
   )
 }
