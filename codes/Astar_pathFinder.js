@@ -41,12 +41,24 @@ function isBlocked(grid, cell) {
     return grid[cell.x][cell.y] !== 0;
 }
 
+// Function to calculate the direction between two cells
+function calculateDirection(current, neighbor) {
+    const dx = neighbor.x - current.x;
+    const dy = neighbor.y - current.y;
+
+    if (dx === -1 && dy === -1) return 0; // Top Left
+    if (dx === -1 && dy === 0) return 1;  // Top
+    if (dx === -1 && dy === 1) return 2;  // Top Right
+    if (dx === 0 && dy === 1) return 3;   // Right
+    if (dx === 1 && dy === 1) return 4;   // Bottom Right
+    if (dx === 1 && dy === 0) return 5;   // Bottom
+    if (dx === 1 && dy === -1) return 6;  // Bottom Left
+    if (dx === 0 && dy === -1) return 7;  // Left
+    return -1; // Invalid direction
+}
+
 // Function to perform A* search and store the path
 function aStar(grid, start, end) {
-    // Define 8 possible movement directions (including diagonals)
-    const dx = [1, 1, 1, 0, 0, -1, -1, -1];
-    const dy = [1, 0, -1, 1, -1, 1, 0, -1];
-
     // Create an open list (to be explored) and a closed list (already explored)
     const openList = [];
     const closedList = [];
@@ -74,38 +86,42 @@ function aStar(grid, start, end) {
         if (currentNode.position.x === end.x && currentNode.position.y === end.y) {
             const path = [];
             let current = currentNode;
-            while (current !== null) {
-                path.push(current.position);
+            while (current.parent !== null) {
+                const direction = calculateDirection(current.parent.position, current.position);
+                path.push(direction);
                 current = current.parent;
             }
             return path.reverse();
         }
 
         // Explore neighbors
-        for (let i = 0; i < 8; i++) {
-            const neighborCell = new Cell(currentNode.position.x + dx[i], currentNode.position.y + dy[i]);
+        for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+                if (dx === 0 && dy === 0) continue; // Skip the current cell
+                const neighborCell = new Cell(currentNode.position.x + dx, currentNode.position.y + dy);
 
-            // Check if the neighbor is valid and not blocked
-            if (isValid(neighborCell) && !isBlocked(grid, neighborCell)) {
-                // Calculate tentative g score
-                const tentativeG = currentNode.g + 1;
+                // Check if the neighbor is valid and not blocked
+                if (isValid(neighborCell) && !isBlocked(grid, neighborCell)) {
+                    // Calculate tentative g score
+                    const tentativeG = currentNode.g + 1;
 
-                // Check if the neighbor is already in the closed list with a lower g score
-                const inClosedList = closedList.some((node) => node.position.x === neighborCell.x && node.position.y === neighborCell.y);
+                    // Check if the neighbor is already in the closed list with a lower g score
+                    const inClosedList = closedList.some((node) => node.position.x === neighborCell.x && node.position.y === neighborCell.y);
 
-                // If the neighbor is in the closed list with a lower g score, skip it
-                if (inClosedList && tentativeG >= currentNode.g) {
-                    continue;
-                }
+                    // If the neighbor is in the closed list with a lower g score, skip it
+                    if (inClosedList && tentativeG >= currentNode.g) {
+                        continue;
+                    }
 
-                // Check if the neighbor is in the open list or has a lower g score
-                const inOpenListIndex = openList.findIndex((node) => node.position.x === neighborCell.x && node.position.y === neighborCell.y);
+                    // Check if the neighbor is in the open list or has a lower g score
+                    const inOpenListIndex = openList.findIndex((node) => node.position.x === neighborCell.x && node.position.y === neighborCell.y);
 
-                // If the neighbor is not in the open list or has a lower g score, add it to the open list
-                if (inOpenListIndex === -1 || tentativeG < openList[inOpenListIndex].g) {
-                    const neighborNode = new Node(neighborCell, tentativeG, calculateHeuristic(neighborCell, end), 0, currentNode);
-                    neighborNode.f = neighborNode.g + neighborNode.h;
-                    openList.push(neighborNode);
+                    // If the neighbor is not in the open list or has a lower g score, add it to the open list
+                    if (inOpenListIndex === -1 || tentativeG < openList[inOpenListIndex].g) {
+                        const neighborNode = new Node(neighborCell, tentativeG, calculateHeuristic(neighborCell, end), 0, currentNode);
+                        neighborNode.f = neighborNode.g + neighborNode.h;
+                        openList.push(neighborNode);
+                    }
                 }
             }
         }
@@ -130,7 +146,7 @@ const path = aStar(grid, start, end);
 if (path !== null) {
     console.log("Path exists using A* algorithm:");
     for (let i = 0; i < path.length; i++) {
-        console.log(`(${path[i].x}, ${path[i].y})`);
+        console.log(path[i]);
     }
 } else {
     console.log("No path exists using A* algorithm.");
