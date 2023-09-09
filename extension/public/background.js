@@ -16,6 +16,8 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.openExtension) {
     // Open the extension popup.
-    chrome.action.openPopup();
+    chrome.action.setPopup({
+      popup: "index.html"
+      });
   }
 });

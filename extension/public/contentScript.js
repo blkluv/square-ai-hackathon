@@ -9,12 +9,13 @@
       );
       const button = document.createElement("button");
       button.textContent = "Open Popup";
+      button.className = "square-ext-btn";
 
-      // Add a click event listener to open the extension's popup
       button.addEventListener('click', () => {
-        // Communicate with the background script to open the extension popup.
-        chrome.runtime.sendMessage({ openExtension: true });
+        // Redirect to https://square-ai-hackathon.vercel.app/
+        window.location.href = 'https://square-ai-hackathon.vercel.app/';
       });
+      
       
 
       // Find the squareup.com website's body element and append the button
