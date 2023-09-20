@@ -24,8 +24,14 @@ Our JavaScript implementation of the A* algorithm is designed for grid-based pat
 
 Using our A* algorithm implementation is straightforward. Here's a simple example using a grid:
 
+
+## Comparison
+
+![A* Image](AStarImage1.png)
+![Dijkstra Image](DijkstraImage1.png)
+<!-- 
 ```javascript
-//grid definition
+// Define the dimensions of the grid
 const ROWS = 4;
 const COLS = 4;
 
@@ -50,11 +56,7 @@ if (path !== null) {
     }
 } else {
     console.log("No path exists using A* algorithm.");
-}
+} -->
 
-## Comparison
-
-![A* Image](AStarImage1.png)
-![Dijkstra Image](DijkstraImage1.png)
 
 
