@@ -1,4 +1,4 @@
-# square-ai-hackathon
+# [square-ai-hackathon](https://www.youtube.com/watch?v=9OfL9H6AmhQ)
 ![](square.png)
 ## The main motto of the competetion is to Build or update an app for Square sellers that uses both Square APIs and Google AI APIs. 
 
