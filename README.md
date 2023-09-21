@@ -5,11 +5,11 @@
 # 
 ## 1)Layout Design:
 * ## Our appilicaion creates a layout to the market with a focus on user experience , for example: giving better recommendations for layout based on the invoices received from the customer (i.e the optimal placement of products).
-![]()
+![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/codes/pics/Layout.png)
 
 ## 2)Accessibility Features:
 * ## our application also enhances Square's accessibility by incorporating AI-driven features such as voice-guided navigation, for example: Customer gives his current location in voice as input and we'll show the shortest possible path for the customer to reach his desired product destination. 
-![]()
+
 
 
 # Use Cases 
