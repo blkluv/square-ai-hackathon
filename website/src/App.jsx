@@ -13,7 +13,9 @@ function App() {
   return (
     <>
       <ImageGrid />
+      <div>
       <Layout />
+      </div>
       <SpeechRecognizer />
     </>
   )
