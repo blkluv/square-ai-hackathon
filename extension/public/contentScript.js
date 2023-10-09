@@ -9,6 +9,7 @@
       );
       const button = document.createElement("button");
       button.textContent = "Open Popup";
+      button.className = "square-ext-btn";
 
       button.addEventListener('click', () => {
         // Redirect to https://square-ai-hackathon.vercel.app/

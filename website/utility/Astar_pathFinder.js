@@ -4,8 +4,8 @@
 
 
 // Define the dimensions of the grid
-const ROWS = 4;
-const COLS = 4;
+const ROWS = 7;
+const COLS = 7;
 
 // Define structure for a cell
 class Cell {
@@ -45,20 +45,28 @@ function isBlocked(grid, cell) {
 function calculateDirection(current, neighbor) {
     const dx = neighbor.x - current.x;
     const dy = neighbor.y - current.y;
+    if([-1,0,1].includes(dx) == false) return -1;
+    
+    if([-1,0,1].includes(dy) == false) return -1;
+    
 
-    if (dx === -1 && dy === -1) return 0; // Top Left
-    if (dx === -1 && dy === 0) return 1;  // Top
-    if (dx === -1 && dy === 1) return 2;  // Top Right
-    if (dx === 0 && dy === 1) return 3;   // Right
-    if (dx === 1 && dy === 1) return 4;   // Bottom Right
-    if (dx === 1 && dy === 0) return 5;   // Bottom
-    if (dx === 1 && dy === -1) return 6;  // Bottom Left
-    if (dx === 0 && dy === -1) return 7;  // Left
-    return -1; // Invalid direction
+    // if (dx === -1 && dy === -1) return 0; // Top Left
+    // if (dx === -1 && dy === 0) return 1;  // Top
+    // if (dx === -1 && dy === 1) return 2;  // Top Right
+    // if (dx === 0 && dy === 1) return 3;   // Right
+    // if (dx === 1 && dy === 1) return 4;   // Bottom Right
+    // if (dx === 1 && dy === 0) return 5;   // Bottom
+    // if (dx === 1 && dy === -1) return 6;  // Bottom Left
+    // if (dx === 0 && dy === -1) return 7;  // Left
+    return [dx,dy];
+    // return -1; // Invalid direction
 }
 
 // Function to perform A* search and store the path
-function aStar(grid, start, end) {
+function aStar(grid, startValue, endValue) {
+    let start = new Cell(startValue[0],startValue[1])
+    let end = new Cell(endValue[0],endValue[1])
+
     // Create an open list (to be explored) and a closed list (already explored)
     const openList = [];
     const closedList = [];
@@ -132,22 +140,26 @@ function aStar(grid, start, end) {
 }
 
 const grid = [
-    [1, 0, 1, 1],
-    [0, 0, 0, 1],
-    [1, 0, 1, 0],
-    [1, 0, 0, 0]
+    [1, 1, 1, 0, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0, 1],
+    [1, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 0, 1, 0, 1],
+    [1, 1, 1, 0, 1, 0, 1],
+    [1, 1, 1, 0, 0, 0, 1],
+    [1, 1, 0, 0, 1, 1, 1],
 ];
 
-const start = new Cell(0, 1);
-const end = new Cell(3, 3);
+const start = [0,3];
+const end = [2,2];
 
 const path = aStar(grid, start, end);
-
-if (path !== null) {
-    console.log("Path exists using A* algorithm:");
-    for (let i = 0; i < path.length; i++) {
-        console.log(path[i]);
-    }
-} else {
-    console.log("No path exists using A* algorithm.");
-}
+// console.log(path)
+// if (path !== null) {
+//     console.log("Path exists using A* algorithm:");
+//     for (let i = 0; i < path.length; i++) {
+//         console.log(path[i]);
+//     }
+// } else {
+//     console.log("No path exists using A* algorithm.");
+// }
+export default aStar;
