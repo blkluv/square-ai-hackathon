@@ -11,6 +11,8 @@ let destCol = 0;
 const cellSize = 40;
 
 function calculateCenterPosition(row, col) {
+  const [source,setsource]=useState(null)
+  const [destination,setdestination]=useState(null);
   // Calculate the center position of the cell
   const x = (col + 1) * cellSize + cellSize / 2 - 20;
   const y = (row + 1) * cellSize + cellSize / 2 - 20;
@@ -38,13 +40,18 @@ const Layout = () => {
     [5, 5],
     [1, 5],
   ];
-  const gridSize = 7;
   const [source, setSource] = useState({ row: -1, col: -1 });
   const [destination, setDestination] = useState({ row: -1, col: -1 });
 
   let counter = 0;
-
-  const drawArrow = () => {
+  const updatesource=()=>{
+    setSource([1,1])
+    console.log("source updated")
+  };
+  const updatedestination=()=>{
+    setDestination([2,3])
+  }
+  const drawArrow = (stops) => {
     counter += 1;
     console.log("counter ", counter);
     let arrowHTML = [];
@@ -129,20 +136,34 @@ const Layout = () => {
     // return outputHtml;
     return arrowHTML;
   };
-  const grid = [
-    [ 18,  11,  12,  1,  11,  12,  0],
-    [ 13,  1,  1,  1,  10,  1,  0],
-    [ 14,  1,  1,  1,  12,  1,  0],
-    [ 15,  16,  17,  1,  15,  1,  0],
-    [ 0,  0,  0,  1,  18,  1,  0],
-    [ 0,  11,  12,  1,  1,  1,  0],
-    [ 0,  14,  1,  1,  0,  0,  0],
+  const grid1 = [
+    [ 18,  11,  12,  1,  11,  12,  0,11],
+    [ 13,  1,  1,  1,  10,  1,  0,11],
+    [ 14,  1,  1,  1,  12,  1,  0,11],
+    [ 15,  16,  17,  1,  15,  1,  0,11],
+    [ 0,  0,  0,  1,  18,  1,  0,11],
+    [ 0,  11,  12,  1,  1,  1,  0,11],
+    [ 0,  14,  1,  1,  0,  0,  0,11],
+    [ 0,  14,  1,  1,  0,  0,  0,11],
+  ];
+  const grid=[
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,11,11,11,12,12,12,13,14,0],
+    [0,0,0,0,0,0,0,0,14,0],
+    [0,0,0,0,0,0,0,0,15,0],
+    [0,0,0,0,0,0,0,0,120,0],
+    [0,0,0,0,0,1,18,1,126,0],
+    [0,0,0,0,0,1,17,1,100,0],
+    [0,0,0,0,0,1,16,1,90,0],
+    [0,0,0,0,0,0,15,1,80,0],
+    [0,0,0,0,0,0,0,0,0,0],
   ];
   return (
     <div className="relative">
+
       <div
         className="grid grid-cols-100 gap-0 p-5 bg-white rounded-lg"
-        style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}
+        style={{ gridTemplateColumns: `repeat(${grid.length}, 1fr)` }}
       >
         {grid.map((row, rowIndex) =>
           row.map((image, colIndex) => (
@@ -156,8 +177,19 @@ const Layout = () => {
         )}
         <div className="&larr"></div>
 
-        {drawArrow()}
+        {drawArrow([
+    [1, 1],
+    [2, 2],
+    [2, 3],
+    [4, 3],
+    [5, 3],
+    [5, 4],
+    [5, 5],
+    [1, 5],
+  ])}
       </div>
+    <button onClick={updatesource}>update source</button>
+    <button onClick={updatedestination}>update destination</button>
     </div>
   );
 };
