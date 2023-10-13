@@ -177,7 +177,7 @@ const Layout = () => {
         )}
         <div className="&larr"></div>
 
-        {drawArrow([
+        {/* {drawArrow([
     [1, 1],
     [2, 2],
     [2, 3],
@@ -186,7 +186,7 @@ const Layout = () => {
     [5, 4],
     [5, 5],
     [1, 5],
-  ])}
+  ])} */}
       </div>
     <button onClick={updatesource}>update source</button>
     <button onClick={updatedestination}>update destination</button>
