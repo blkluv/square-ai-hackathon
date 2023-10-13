@@ -20,7 +20,7 @@ import img17 from "../assets/17.png";
 import img18 from "../assets/18.png";
 import aStar from "../../utility/Astar_pathFinder";
 import { useState, useEffect } from "react";
-import itemList from "../constants/items";
+import itemList from "../constants/itemImages";
 // Assuming you have source and destination coordinates
 let sourceRow = 0;
 let sourceCol = 0;
