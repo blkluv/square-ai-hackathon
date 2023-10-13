@@ -1,4 +1,4 @@
-const itemList = {
+const itemNames = {
     0: "shelf",
     1: "shelf",
     2: "shelf",
@@ -21,5 +21,5 @@ const itemList = {
     19:"redpen",
   };
   
-  export default itemList;
+  export default itemNames;
   
