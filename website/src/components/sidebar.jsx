@@ -62,7 +62,7 @@ const ImageGrid = () => {
         <div class="overflow-y-auto py-5 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
           <ul class="space-y-2">
             <li>
-              <a
+              {/* <a
                 href="/overview"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -77,7 +77,9 @@ const ImageGrid = () => {
                   <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                 </svg>
                 <span class="ml-3">Overview</span>
-              </a>
+              </a> */}
+
+              <Link to="/overview">Overview</Link>
             </li>
             <li>
             <a
