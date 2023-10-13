@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google-cloud/vision": "^0.22.1",
     "babel-polyfill": "^6.26.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
     "react-speech-recognition": "^3.10.0"
   },
   "devDependencies": {
