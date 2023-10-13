@@ -16,6 +16,14 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+@keyframes moveDots {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0; /* Adjust this value to control the distance the dots move */
+  }
+}
 
 a {
   font-weight: 500;

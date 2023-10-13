@@ -20,7 +20,7 @@ import img17 from "../assets/17.png";
 import img18 from "../assets/18.png";
 import aStar from "../../utility/Astar_pathFinder";
 import { useState, useEffect } from "react";
-
+import itemList from "../constants/items";
 // Assuming you have source and destination coordinates
 let sourceRow = 0;
 let sourceCol = 0;
@@ -46,10 +46,14 @@ const Layout = () => {
     [1, 1, 0, 0, 1, 1, 1],
   ];
   const stops = [
-    [0, 3],
-    [2, 2],
+    [1, 1],
+    [1, 2],
+    [1, 3],
+    [2, 3],
     [4, 3],
+    [5, 3],
     [5, 4],
+    [5, 5],
     [1, 5],
   ];
   const gridSize = 7;
@@ -91,49 +95,49 @@ const Layout = () => {
 
           arrowHTML.push(
             <div
-              style={{
-                top: sourceCenter.y,
-                left: sourceCenter.x,
-                width: Math.sqrt(dx * dx + dy * dy),
-                transform: `rotate(${angle}deg)`,
-                transformOrigin: "left center",
-                borderBottom: "2px solid red", // Arrow styling
-                position: "absolute",
-              }}
-            >
-              
-            </div>
+            style={{
+              className:"animate-bounce",
+              top: sourceCenter.y,
+              left: sourceCenter.x,
+              width: Math.sqrt(dx * dx + dy * dy),
+              transform: `rotate(${angle}deg)`,
+              transformOrigin: "left center",
+              borderRadius: "5px",
+              borderBottom: "7px dashed green", // Arrow styling as a dashed line
+              position: "absolute",
+              animation: "moveDots 2s linear infinite", // Add animation
+            }}
+          ></div>
           );
-          arrowHTML.push(
-            <div
-              style={{
-                top: destinationCenter.y,
-                left: destinationCenter.x,
-                width: 15,
-                transform: `rotate(${angle + 160}deg)`,
-                transformOrigin: "left center",
-                borderBottom: "2px solid red", // Arrow styling
-                position: "absolute",
-              }}
-            >
+          // arrowHTML.push(
+          //   <div
+          //     style={{
+          //       top: destinationCenter.y,
+          //       left: destinationCenter.x,
+          //       width: 15,
+          //       transform: `rotate(${angle + 160}deg)`,
+          //       transformOrigin: "left center",
+          //       borderBottom: "2px solid red", // Arrow styling
+          //       position: "absolute",
+          //     }}
+          //   >
               
-            </div>
-          );
-          arrowHTML.push(
-            <div
-              style={{
-                top: destinationCenter.y,
-                left: destinationCenter.x,
-                width: 15,
-                transform: `rotate(${angle + 200}deg)`,
-                transformOrigin: "left center",
-                borderBottom: "2px solid red", // Arrow styling
-                position: "absolute",
-              }}
-            >
-              
-            </div>
-          );
+          //   </div>
+          // );
+          // arrowHTML.push(
+          //   <div
+          //     style={{
+          //       top: destinationCenter.y,
+          //       left: destinationCenter.x,
+          //       width: 15,
+          //       transform: `rotate(${angle + 200}deg)`,
+          //       transformOrigin: "left center",
+          //       borderBottom: "2px solid red", // Arrow styling
+          //       position: "absolute",
+          //     }}
+          //   >   
+            // </div>
+          // );
 
           tempSource = [...dest];
         }
@@ -143,32 +147,14 @@ const Layout = () => {
     // return outputHtml;
     return arrowHTML;
   };
-  // Generate an array to represent the grid
-  // const grid = [
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //     [img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2, img0, img1, img2],
-  //   ];
   const grid = [
-    [img18, img11, img12, img1, img11, img12, img0],
-    [img13, img1, img1, img1, img10, img1, img0],
-    [img14, img1, img1, img1, img12, img1, img0],
-    [img15, img16, img17, img1, img15, img1, img0],
-    [img0, img0, img0, img1, img18, img1, img0],
-    [img0, img11, img12, img1, img1, img1, img0],
-    [img0, img14, img1, img1, img0, img0, img0],
+    [ 18,  11,  12,  1,  11,  12,  0],
+    [ 13,  1,  1,  1,  10,  1,  0],
+    [ 14,  1,  1,  1,  12,  1,  0],
+    [ 15,  16,  17,  1,  15,  1,  0],
+    [ 0,  0,  0,  1,  18,  1,  0],
+    [ 0,  11,  12,  1,  1,  1,  0],
+    [ 0,  14,  1,  1,  0,  0,  0],
   ];
   return (
     <div className="relative">
@@ -182,7 +168,7 @@ const Layout = () => {
               key={`${rowIndex}-${colIndex}`}
               className="w-10 h-10" // Adjust this for the size of each cell
             >
-              <img src={image} alt="" className="w-full h-full" />
+              <img src={itemList[image]} alt="" className="w-full h-full" />
             </div>
           ))
         )}
