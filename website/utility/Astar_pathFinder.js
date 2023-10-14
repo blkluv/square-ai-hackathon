@@ -139,20 +139,20 @@ function aStar(grid, startValue, endValue) {
     return null;
 }
 
-const grid = [
-    [1, 1, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 1, 0, 1],
-    [1, 0, 0, 0, 1, 0, 1],
-    [1, 1, 1, 0, 1, 0, 1],
-    [1, 1, 1, 0, 1, 0, 1],
-    [1, 1, 1, 0, 0, 0, 1],
-    [1, 1, 0, 0, 1, 1, 1],
-];
+// const grid = [
+//     [1, 1, 1, 0, 1, 1, 1],
+//     [1, 0, 0, 0, 1, 0, 1],
+//     [1, 0, 0, 0, 1, 0, 1],
+//     [1, 1, 1, 0, 1, 0, 1],
+//     [1, 1, 1, 0, 1, 0, 1],
+//     [1, 1, 1, 0, 0, 0, 1],
+//     [1, 1, 0, 0, 1, 1, 1],
+// ];
 
-const start = [0,3];
-const end = [2,2];
+// const start = [0,3];
+// const end = [2,2];
 
-const path = aStar(grid, start, end);
+// const path = aStar(grid, start, end);
 // console.log(path)
 // if (path !== null) {
 //     console.log("Path exists using A* algorithm:");

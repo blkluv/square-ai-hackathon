@@ -3,6 +3,7 @@ import aStar from "../../utility/Astar_pathFinder";
 import { useState, useEffect } from "react";
 import itemList from "../constants/itemImages";
 import itemNames from "../constants/itemNames";
+// import { aStar } from "../constants/Astar_pathFinder";
 // Assuming you have source and destination coordinates
 let sourceRow = 0;
 let sourceCol = 0;
@@ -160,7 +161,7 @@ const Layout = () => {
   // ];
   return (
     <div className="relative">
-
+      
       <div
         className="grid grid-cols-100 gap-0 p-5 bg-white rounded-lg"
         style={{ gridTemplateColumns: `repeat(${grid.length}, 1fr)` }}
@@ -175,18 +176,23 @@ const Layout = () => {
             </div>
           ))
         )}
+        
         <div className="&larr"></div>
 
          {drawArrow([
     [1, 1],
-    [2, 2],
     [2, 3],
-    [4, 3],
     [5, 3],
-    [5, 4],
     [5, 5],
     [1, 5],
   ])} 
+      </div>
+      <div >
+        {"source "+source[0]+" , "+source[1]}
+      </div>
+      <div>
+      {"destination "+destination[0]+" , "+destination[1]}
+
       </div>
     <button onClick={updatesource}>update source</button>
     <button onClick={updatedestination}>update destination</button>

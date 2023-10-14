@@ -87,8 +87,8 @@ function aStar(grid, start, end) {
             const path = [];
             let current = currentNode;
             while (current.parent !== null) {
-                const direction = calculateDirection(current.parent.position, current.position);
-                path.push(direction);
+                // const direction = calculateDirection(current.parent.position, current.position);
+                path.push([current.position.x,current.position.y]);
                 current = current.parent;
             }
             return path.reverse();
@@ -141,7 +141,7 @@ const grid = [
 const start = new Cell(0, 1);
 const end = new Cell(3, 3);
 
-const path = aStar(grid, start, end);
+// const path = aStar(grid, start, end);
 
 if (path !== null) {
     console.log("Path exists using A* algorithm:");
@@ -151,3 +151,4 @@ if (path !== null) {
 } else {
     console.log("No path exists using A* algorithm.");
 }
+export { aStar };
