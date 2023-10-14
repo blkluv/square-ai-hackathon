@@ -1,8 +1,52 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+}
+.blurred {
+  filter: blur(5px); /* Add the desired blur effect here */
+}
+
+/* #glow-container {
+  position: relative;
+}
+
+#glow-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  animation: glow 1s infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} */
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.animate-gradient {
+  animation: gradient 1s linear infinite;
+  background-image: linear-gradient(135deg, #4285f4, #ff1e1e, #fbbc05, #34a853);
+  background-size: 400% 400%;
+  background-position: 0 100%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 100%;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 
 .logo {

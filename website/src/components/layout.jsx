@@ -3,12 +3,7 @@ import aStar from "../../utility/Astar_pathFinder";
 import { useState, useEffect } from "react";
 import itemList from "../constants/itemImages";
 import itemNames from "../constants/itemNames";
-// import { aStar } from "../constants/Astar_pathFinder";
-// Assuming you have source and destination coordinates
-let sourceRow = 0;
-let sourceCol = 0;
-let destRow = 0;
-let destCol = 0;
+
 const cellSize = 40;
 
 function calculateCenterPosition(row, col) {
@@ -22,6 +17,14 @@ const Layout = () => {
   const [source, setSource] = useState({ row: -1, col: -1 });
   const [destination, setDestination] = useState({ row: -1, col: -1 });
   const [arrow, setArrow] = useState(null);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipContent, setTooltipContent] = useState('');
+
+  const handleImageClick = (content) => {
+    setShowTooltip(!showTooltip);
+    setTooltipContent(content);
+  };
+
   const gridState = [
     [1, 1, 1, 0, 1, 1, 1],
     [1, 0, 0, 0, 1, 0, 1],
@@ -41,17 +44,6 @@ const Layout = () => {
     // Update the state with the new arrow
     setArrow(arrow);
   }, [source, destination]);
-  // const stops = [
-  //   [1, 1],
-  //   [1, 2],
-  //   [1, 3],
-  //   [2, 3],
-  //   [4, 3],
-  //   [5, 3],
-  //   [5, 4],
-  //   [5, 5],
-  //   [1, 5],
-  // ];
     let counter = 0;
   const updatesource=()=>{
     setSource({ row: 1, col: 1 })
@@ -134,22 +126,18 @@ const Layout = () => {
   // ];
   return (
     <div className="relative">
-      
       <div
         className="grid grid-cols-100 gap-0 p-5 bg-white rounded-lg"
         style={{ gridTemplateColumns: `repeat(${grid.length}, 1fr)` }}
       >
         {grid.map((row, rowIndex) =>
-          row.map((image, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className="w-10 h-10" // Adjust this for the size of each cell
-            >
-              <img src={itemList[image]} alt="" className="w-full h-full" />
-            </div>
-          ))
-        )}
-        
+        row.map((image, colIndex) => (
+          <div key={`${rowIndex}-${colIndex}`} className="w-10 h-10" onClick={() => handleImageClick("hi")}>
+            <img src={itemList[image]} alt="" className="w-full h-full" />
+          </div>
+        ))
+      )}
+      
         <div className="&larr"></div>
 
          {source!={ row: -1, col: -1 }  && destination!={ row: -1, col: -1 } && drawArrow([
@@ -165,6 +153,7 @@ const Layout = () => {
       {"destination "+destination.row+" , "+destination.col}
 
       </div>
+      
     <button onClick={updatesource}>update source</button>
     <button onClick={updatedestination}>update destination</button>
     </div>
