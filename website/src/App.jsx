@@ -8,6 +8,8 @@ import SellerOverview from "./components/SellerOverview";
 import Messages from "./components/Messages";
 import Docs from "./components/Docs";
 import Help from "./components/Help";
+import layoutsDashboard from "./pages/layoutsDashboard";
+import LayoutsDashboard from "./pages/layoutsDashboard";
 // import Pag
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
         <Route path="/messages" element={<Messages />} />
         <Route path="/docs" element={<Docs />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/layouts" element={<LayoutsDashboard />} />
         </Routes>
       </Router>
     </>
