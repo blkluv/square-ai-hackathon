@@ -18,6 +18,8 @@ function App() {
   return (
     <>
       <Router>
+     
+
         <Routes>
         <Route path="/overview" element={<SellerOverview />} /> {/* Use `element` prop */}
         <Route path="/" element={<HomePage />} /> {/* Use `element` prop */}
@@ -27,6 +29,7 @@ function App() {
         <Route path="/layouts" element={<LayoutsDashboard />} />
         </Routes>
       </Router>
+      
     </>
   );
 }

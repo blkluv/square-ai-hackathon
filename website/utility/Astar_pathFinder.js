@@ -38,7 +38,7 @@ function isValid(cell) {
 
 // Function to check if a cell is blocked (contains a non-zero value)
 function isBlocked(grid, cell) {
-    return grid[cell.x][cell.y] !== 0;
+    return grid[cell.x][cell.y] !== 0 ;
 }
 
 // Function to calculate the direction between two cells
@@ -109,7 +109,7 @@ function aStar(grid, startValue, endValue) {
                 const neighborCell = new Cell(currentNode.position.x + dx, currentNode.position.y + dy);
 
                 // Check if the neighbor is valid and not blocked
-                if (isValid(neighborCell) && !isBlocked(grid, neighborCell)) {
+                if (isValid(neighborCell) && (!isBlocked(grid, neighborCell) || (endValue.x==neighborCell.x && endValue.y==neighborCell.y))) {
                     // Calculate tentative g score
                     const tentativeG = currentNode.g + 1;
 
@@ -136,23 +136,23 @@ function aStar(grid, startValue, endValue) {
     }
 
     // If the open list is empty and the goal is not reached, there is no path
-    return null;
+    return [];
 }
 
-const grid = [
-    [1, 1, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 1, 0, 1],
-    [1, 0, 0, 0, 1, 0, 1],
-    [1, 1, 1, 0, 1, 0, 1],
-    [1, 1, 1, 0, 1, 0, 1],
-    [1, 1, 1, 0, 0, 0, 1],
-    [1, 1, 0, 0, 1, 1, 1],
-];
+// const grid = [
+//     [1, 1, 1, 0, 1, 1, 1],
+//     [1, 0, 0, 0, 1, 0, 1],
+//     [1, 0, 0, 0, 1, 0, 1],
+//     [1, 1, 1, 0, 1, 0, 1],
+//     [1, 1, 1, 0, 1, 0, 1],
+//     [1, 1, 1, 0, 0, 0, 1],
+//     [1, 1, 0, 0, 1, 1, 1],
+// ];
 
-const start = [0,3];
-const end = [2,2];
+// const start = [0,3];
+// const end = [2,2];
 
-const path = aStar(grid, start, end);
+// const path = aStar(grid, start, end);
 // console.log(path)
 // if (path !== null) {
 //     console.log("Path exists using A* algorithm:");
