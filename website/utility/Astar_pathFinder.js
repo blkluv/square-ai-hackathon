@@ -91,7 +91,7 @@ function aStar(grid, startValue, endValue) {
         closedList.push(currentNode);
 
         // If the current node is the goal, construct the path
-        if (currentNode.position.x === end.x && currentNode.position.y === end.y) {
+        if (Math.abs(currentNode.position.x - end.x) < 2 && Math.abs(currentNode.position.y - end.y) < 2) {
             const path = [];
             let current = currentNode;
             while (current.parent !== null) {

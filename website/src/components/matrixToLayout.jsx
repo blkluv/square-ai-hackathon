@@ -2,7 +2,7 @@ import itemList from "../constants/itemImages";
 import itemNames from "../constants/itemNames";
 const MatrixToLayout=(props)=>{
     const matrix=props.matrix.matrix
-    console.log(matrix)
+    console.log("m",matrix)
     return(
         <div
         className="grid grid-cols-100 gap-0 p-5 bg-white rounded-lg w-fit"

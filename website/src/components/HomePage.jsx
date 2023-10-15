@@ -6,7 +6,11 @@ import '../App.css'
 
 function HomePage() {
   const [isBlurred, setIsBlurred] = useState(false);
-
+  const [from,setfrom]=useState(null)
+  const [to,setto]=useState(null)
+  const updatefrom=(str)=>{
+    setfrom(str)
+  }
   // Function to toggle the blur state
   const toggleBlur = () => {
     setIsBlurred(!isBlurred);

@@ -13,12 +13,13 @@ function calculateCenterPosition(row, col) {
   return { x, y };
 }
 
-const Layout = () => {
+const Layout = ({from,to}) => {
   const [source, setSource] = useState({ row: -1, col: -1 });
   const [destination, setDestination] = useState({ row: -1, col: -1 });
   const [arrow, setArrow] = useState(null);
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipContent, setTooltipContent] = useState('');
+
 
   const handleImageClick = (content) => {
     setShowTooltip(!showTooltip);
@@ -50,7 +51,7 @@ const Layout = () => {
     console.log("source updated")
   };
   const updatedestination=()=>{
-    setDestination({ row: 1, col: 4 })
+    setDestination({ row: 2, col: 6 })
   }
   
   const drawArrow = (stops) => {
