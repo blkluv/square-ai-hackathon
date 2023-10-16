@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import itemPrices from '../constants/itemCost';
@@ -83,8 +83,8 @@ const Cashier = () => {
             <form>
                 <div  className='flex  my-2'>
             <input className='flex rounded-xl px-5 mx-2 py-2' name='given_name' placeholder="Given Name" onChange={(event)=>{handleInputChange(event)}} required value={userLogin.given_name}/>
-            <input className='flex rounded-xl px-5 mx-2 py-2' name='family_name' placeholder="Family Name" required value={userLogin.family_name}/>
-            <input className='flex rounded-xl px-5 mx-2 py-2' name='email_address' type='email' placeholder="Email" required value={userLogin.email_address}/>
+            <input className='flex rounded-xl px-5 mx-2 py-2' name='family_name' placeholder="Family Name" onChange={(event)=>{handleInputChange(event)}} required value={userLogin.family_name}/>
+            <input className='flex rounded-xl px-5 mx-2 py-2' name='email_address' type='email' placeholder="Email" onChange={(event)=>{handleInputChange(event)}} required value={userLogin.email_address}/>
                 </div>
             <button onClick={login}>Submit</button>
             </form>

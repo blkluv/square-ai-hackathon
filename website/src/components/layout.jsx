@@ -23,6 +23,7 @@ const Layout = ({from,to}) => {
   useEffect(() => {
     // Update source when "from" is updated
     if (from) {
+      
       setSource({ row: 1, col: 1 });
     }
   }, [from]);
