@@ -38,7 +38,8 @@ const Cashier = () => {
         data[0][event.target.name] = event.target.value;
         setuserLogin(data);
     }
-    const login=()=>{
+    const login=(event)=>{
+        event.preventDefault();
         const loginArgs = userLogin[0];
         console.log("Data",userLogin[0]);
         //login using loginArgs
