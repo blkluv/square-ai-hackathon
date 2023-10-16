@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
-const SpeechRecognizer = ({ toggleBlur }) => {
+const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
         // State to hold the timer ID
     const [timerId, setTimerId] = useState(null);
     const [isLoading,setIsLoading]=useState(false)
@@ -35,6 +35,11 @@ const SpeechRecognizer = ({ toggleBlur }) => {
                 "1 box of salt (1/2 tsp)"
             ])
             
+            }
+            if(transcript.includes("pineapple") && transcript.includes("ice cream")){
+                console.log("all present")
+                updatefrom("pineapple")
+                updateto("icecream")
             }
         }, 3000); // 5 seconds
 
@@ -71,6 +76,7 @@ const SpeechRecognizer = ({ toggleBlur }) => {
 
     return (
         <div>
+            
             {!listening&& checklist!=[]&& <ul className="m-5 text-left">
         {checklist.map((ingredient, index) => (
           <li key={index}>

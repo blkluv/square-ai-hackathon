@@ -20,7 +20,19 @@ const Layout = ({from,to}) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipContent, setTooltipContent] = useState('');
   const [foundKey, setFoundKey] = useState(null);
+  useEffect(() => {
+    // Update source when "from" is updated
+    if (from) {
+      setSource({ row: 1, col: 1 });
+    }
+  }, [from]);
 
+  useEffect(() => {
+    // Update destination when "to" is updated
+    if (to) {
+      setDestination({ row: 2, col: 6 });
+    }
+  }, [to]);
   const handleImageClick = (content) => {
     setShowTooltip(!showTooltip);
     setTooltipContent(content);
@@ -153,7 +165,8 @@ const Layout = ({from,to}) => {
       {"destination "+destination.row+" , "+destination.col}
 
       </div>
-      
+    {from}
+    {to}  
     <button onClick={updatesource}>update source</button>
     <button onClick={updatedestination}>update destination</button>
     </div>

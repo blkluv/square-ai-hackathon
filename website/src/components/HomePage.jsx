@@ -9,10 +9,12 @@ function HomePage() {
   const [from,setfrom]=useState(null)
   const [to,setto]=useState(null)
   const updatefrom=(str)=>{
+    console.log("ran")
     setfrom(str)
   }
   const updateto=(str)=>{
     setto(str);
+    console.log("got ", from , to)
   }
   // Function to toggle the blur state
   const toggleBlur = () => {
@@ -27,7 +29,7 @@ function HomePage() {
 
       <div className="h-10"></div>
       <div className={`text-center ${isBlurred ? 'blurred' : ''}`}>
-        <Layout />
+      <Layout from={from} to={to} />
       </div>
       <div className="flex-grow"></div>
       <div className=" fixed bottom-0 w-full" style={{ borderRadius: "25px" ,backgroundColor:"rgba(0, 0, 0, 1)", boxShadow: "0 0 10px rgba(0, 0, 0, 0.8)"  }}>
