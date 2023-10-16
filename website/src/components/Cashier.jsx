@@ -38,13 +38,51 @@ const Cashier = () => {
         data[0][event.target.name] = event.target.value;
         setuserLogin(data);
     }
-    const login=(event)=>{
+    const login = (event) => {
         event.preventDefault();
-        const loginArgs = userLogin[0];
-        console.log("Data",userLogin[0]);
-        //login using loginArgs
-        setTimeout(()=>{setregistered(true)},1500)
-    }
+      
+        // Extract data from userLogin[0]
+        const user = userLogin[0];
+        console.log("Data", user);
+      
+        // Encode the customer details as a JSON string
+        const customerDetails = JSON.stringify({
+          given_name: user.given_name,
+          family_name: user.family_name,
+          email_address: user.email_address,
+        });
+      
+        // Encode the JSON string for the query parameters
+        const encodedCustomerDetails = encodeURIComponent(customerDetails);
+      
+        // Construct the query parameters
+        const queryParams = new URLSearchParams({
+          at: "EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP",
+          customer_details: encodedCustomerDetails,
+        });
+      
+        // Perform the API call with POST method
+        fetch(`https://google-square-4zxc4m7upa-el.a.run.app/customer/create?${queryParams}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("API Response", data);
+      
+            // You can update your state or perform other actions based on the API response here
+            // For example, you might want to call setregistered(true) if the API call was successful.
+            setregistered(true);
+          })
+          .catch((error) => {
+            console.error("API Error", error);
+            // Handle any error that occurred during the API call
+          });
+      };
+      
+      
   return (
     <div>
         <p className='text-4xl'>Cashier</p>

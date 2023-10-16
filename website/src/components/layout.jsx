@@ -24,14 +24,14 @@ const Layout = ({from,to}) => {
     // Update source when "from" is updated
     if (from) {
       
-      setSource({ row: 1, col: 1 });
+      setSource({ row: 1, col: 0 });
     }
   }, [from]);
 
   useEffect(() => {
     // Update destination when "to" is updated
     if (to) {
-      setDestination({ row: 2, col: 6 });
+      setDestination({ row: 3, col: 6 });
     }
   }, [to]);
   const handleImageClick = (content) => {
