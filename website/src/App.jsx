@@ -12,7 +12,12 @@ import CreateLayout from "./components/CreateLayout";
 import LayoutManagement from "./components/LayoutManagement"
 import layoutsDashboard from "./pages/layoutsDashboard";
 import LayoutsDashboard from "./pages/layoutsDashboard";
+<<<<<<< HEAD
 import Cashier from "./components/Cashier";
+=======
+import Redirect from "./components/redirect";
+import UserGraph from "./components/UserGraph";
+>>>>>>> 076f33445473416abb3887df3864b345fee41729
 // import Pag
 
 function App() {
@@ -32,7 +37,12 @@ function App() {
         <Route path="/createLayout" element={<CreateLayout />}></Route>
         <Route path="/layoutmanagement" element={<LayoutManagement />}></Route>
         <Route path="/layouts" element={<LayoutsDashboard />} />
+<<<<<<< HEAD
         <Route path="/cashier" element={ <Cashier /> }/>
+=======
+        <Route path="/callback" element={<Redirect />} />
+        <Route path="/usergraphs" element={<UserGraph />} />
+>>>>>>> 076f33445473416abb3887df3864b345fee41729
         </Routes>
       </Router>
       

@@ -19,7 +19,7 @@ const Layout = ({from,to}) => {
   const [arrow, setArrow] = useState(null);
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipContent, setTooltipContent] = useState('');
-
+  const [foundKey, setFoundKey] = useState(null);
 
   const handleImageClick = (content) => {
     setShowTooltip(!showTooltip);
@@ -143,7 +143,6 @@ const Layout = ({from,to}) => {
 
          {source!={ row: -1, col: -1 }  && destination!={ row: -1, col: -1 } && drawArrow([
           [source.row,source.col],
-
           [destination.row,destination.col],
         ])} 
       </div>

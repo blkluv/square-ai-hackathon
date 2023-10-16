@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "react-beautiful-dnd": "^13.1.1"
+    "react-beautiful-dnd": "^13.1.1",
+    "reactjs-graphs": "^1.4.0"
   }
 }
