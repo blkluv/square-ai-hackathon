@@ -1,0 +1,38 @@
+{
+	"name": "reactjs-graphs",
+	"version": "1.4.0",
+	"description": "Create branched graphs in ReactJS",
+	"main": "build/index.js",
+	"scripts": {
+		"start": "webpack-dev-server",
+		"build": "NODE_ENV=production webpack -p --display-modules",
+		"prepublishOnly": "npm run build"
+	},
+	"repository": "https://github.com/codedamn/reactjs-graphs.git",
+	"keywords": ["graphs", "react graphs", "branched react graphs"],
+	"author": "Mehul Mohan",
+	"license": "MIT",
+	"peerDependencies": {
+		"react": "^16.7.0",
+		"react-dom": "^16.7.0"
+	},
+	"dependencies": {
+		"konva": "^2.6.0",
+		"prop-types": "^15.6.2",
+		"react-konva": "^16.6.31"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.2.2",
+		"@babel/preset-env": "^7.2.0",
+		"@babel/preset-react": "^7.0.0",
+		"babel-loader": "^8.0.4",
+		"css-loader": "^2.0.1",
+		"path": "^0.12.7",
+		"style-loader": "^0.23.1",
+		"react": "^16.6.3",
+		"react-dom": "^16.6.3",
+		"webpack": "^4.27.1",
+		"webpack-cli": "^3.1.2",
+		"webpack-dev-server": "^3.1.10"
+	}
+}
