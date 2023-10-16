@@ -36,7 +36,7 @@ const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
             ])
             
             }
-            if(transcript.includes("pineapple") && transcript.includes("ice cream")){
+            if(transcript.includes("pineapple") && transcript.includes("Ice Cream")){
                 console.log("all present")
                 updatefrom("pineapple")
                 updateto("icecream")
