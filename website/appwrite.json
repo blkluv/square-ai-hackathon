@@ -1,0 +1,20 @@
+{
+    "projectId": "652a33a6940b04efd6b3",
+    "projectName": "squareGoogle",
+    "functions": [
+        {
+            "$id": "652a35496fa56d11dfdd",
+            "name": "getLayoutArray",
+            "runtime": "python-3.9",
+            "path": "functions/getLayoutArray",
+            "entrypoint": "src/index.py",
+            "ignore": [
+                "__pypackages__"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}

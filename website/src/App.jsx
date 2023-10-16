@@ -8,6 +8,8 @@ import SellerOverview from "./components/SellerOverview";
 import Messages from "./components/Messages";
 import Docs from "./components/Docs";
 import Help from "./components/Help";
+import CreateLayout from "./components/CreateLayout";
+import LayoutManagement from "./components/LayoutManagement"
 import layoutsDashboard from "./pages/layoutsDashboard";
 import LayoutsDashboard from "./pages/layoutsDashboard";
 // import Pag
@@ -26,6 +28,8 @@ function App() {
         <Route path="/messages" element={<Messages />} />
         <Route path="/docs" element={<Docs />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/createLayout" element={<CreateLayout />}></Route>
+        <Route path="/layoutmanagement" element={<LayoutManagement />}></Route>
         <Route path="/layouts" element={<LayoutsDashboard />} />
         </Routes>
       </Router>
