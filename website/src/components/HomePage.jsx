@@ -11,6 +11,9 @@ function HomePage() {
   const updatefrom=(str)=>{
     setfrom(str)
   }
+  const updateto=(str)=>{
+    setto(str);
+  }
   // Function to toggle the blur state
   const toggleBlur = () => {
     setIsBlurred(!isBlurred);
@@ -28,7 +31,7 @@ function HomePage() {
       </div>
       <div className="flex-grow"></div>
       <div className=" fixed bottom-0 w-full" style={{ borderRadius: "25px" ,backgroundColor:"rgba(0, 0, 0, 1)", boxShadow: "0 0 10px rgba(0, 0, 0, 0.8)"  }}>
-        <SpeechRecognizer toggleBlur={toggleBlur} />
+        <SpeechRecognizer toggleBlur={toggleBlur} updatefrom={updatefrom} updateto={updateto}/>
       </div>
     </div>
   );

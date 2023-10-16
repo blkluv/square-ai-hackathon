@@ -7,6 +7,7 @@ const Redirect = () => {
   const queryParam = params.get("code");
   console.log("query: ", queryParam);
   const [error, setError] = useState(null);
+  const [chatreply,setchatreply]=useState("");
 
   useEffect(() => {
     // Check if the access_token is already in local storage
