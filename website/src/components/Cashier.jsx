@@ -53,7 +53,7 @@ const Cashier = () => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: requestData,
+    body: JSON.stringify( requestData),
   })
     .then((response) => {
       if (!response.ok) {
