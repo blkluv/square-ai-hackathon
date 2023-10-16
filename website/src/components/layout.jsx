@@ -32,17 +32,18 @@ const Layout = ({from,to}) => {
         if(names[id] === from){
           console.log("Found at : ",id);
           itemID = id;
-          return;
         }
       }
       grid.map((row,rowIndex)=>{
         row.map((col,colIndex)=>{
-          if(itemID == grid[rowIndex][colIndex])
-          console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
-          updatedRow = rowIndex;
-          updatedCol = colIndex;
+          if(itemID == grid[rowIndex][colIndex]){
+            console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
+            updatedRow = rowIndex;
+            updatedCol = colIndex;
+          }
         })
       })
+      console.log("updates",updatedRow,updatedCol);
       setSource({ row: updatedRow, col: updatedCol });
     }
   }, [from]);
@@ -59,17 +60,18 @@ const Layout = ({from,to}) => {
         if(names[id] === to){
           console.log("Found at : ",id);
           itemID = id;
-          return;
         }
       }
       grid.map((row,rowIndex)=>{
         row.map((col,colIndex)=>{
-          if(itemID == grid[rowIndex][colIndex])
-          console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
-          updatedRow = rowIndex;
-          updatedCol = colIndex;
+          if(itemID == grid[rowIndex][colIndex]){
+            console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
+            updatedRow = rowIndex;
+            updatedCol = colIndex;
+          }
         })
       })
+      console.log("updates",updatedRow,updatedCol);
       setDestination({ row: updatedRow, col: updatedCol });
     }
   }, [to]);
