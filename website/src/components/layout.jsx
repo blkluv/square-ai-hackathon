@@ -22,16 +22,55 @@ const Layout = ({from,to}) => {
   const [foundKey, setFoundKey] = useState(null);
   useEffect(() => {
     // Update source when "from" is updated
+    console.log("here",from);
     if (from) {
-      
-      setSource({ row: 1, col: 0 });
+      const names = itemNames;
+      var itemID ;
+      var updatedRow ;
+      var updatedCol;
+      for(var id in names){
+        if(names[id] === from){
+          console.log("Found at : ",id);
+          itemID = id;
+          return;
+        }
+      }
+      grid.map((row,rowIndex)=>{
+        row.map((col,colIndex)=>{
+          if(itemID == grid[rowIndex][colIndex])
+          console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
+          updatedRow = rowIndex;
+          updatedCol = colIndex;
+        })
+      })
+      setSource({ row: updatedRow, col: updatedCol });
     }
   }, [from]);
 
   useEffect(() => {
     // Update destination when "to" is updated
+    console.log("To",to);
     if (to) {
-      setDestination({ row: 3, col: 6 });
+      const names = itemNames;
+      var itemID ;
+      var updatedRow ;
+      var updatedCol;
+      for(var id in names){
+        if(names[id] === to){
+          console.log("Found at : ",id);
+          itemID = id;
+          return;
+        }
+      }
+      grid.map((row,rowIndex)=>{
+        row.map((col,colIndex)=>{
+          if(itemID == grid[rowIndex][colIndex])
+          console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
+          updatedRow = rowIndex;
+          updatedCol = colIndex;
+        })
+      })
+      setDestination({ row: updatedRow, col: updatedCol });
     }
   }, [to]);
   const handleImageClick = (content) => {
