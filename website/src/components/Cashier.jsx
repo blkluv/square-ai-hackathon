@@ -31,6 +31,44 @@ const Cashier = () => {
             const _field = {name: inputField.name,quantity: inputField.quantity ,base_price_money:{amount: inputField.Value ,currency : 'USD'}};
             inputObject.push(_field);
         })
+        inputObject = inputFields.map((inputField) => ({
+            name: inputField.name,
+            quantity: inputField.quantity,
+            base_price_money: {
+              amount: parseInt(inputField.Price), // Assuming 'Price' is the correct field name
+              currency: 'USD',
+            },
+          }));
+        
+          // Create the request payload
+          const requestData = {
+            at: "EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP",
+            order_list: {
+              items: inputObject,
+            },
+          };
+        console.log(requestData)
+        fetch("https://google-square-4zxc4m7upa-el.a.run.app/order/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: requestData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Handle the response data here
+      console.log(data);
+    })
+    .catch((error) => {
+      // Handle errors here
+      console.error(error);
+    });
         setinputFields([{name: '', quantity: '',Price: ''}])
     }
     const handleInputChange=(event)=>{
@@ -41,36 +79,35 @@ const Cashier = () => {
     const login = (event) => {
         event.preventDefault();
       
-        // Extract data from userLogin[0]
+        // Extract customer details from userLogin[0]
         const user = userLogin[0];
-        console.log("Data", user);
       
-        // Encode the customer details as a JSON string
-        const customerDetails = JSON.stringify({
-          given_name: user.given_name,
-          family_name: user.family_name,
-          email_address: user.email_address,
-        });
-      
-        // Encode the JSON string for the query parameters
-        const encodedCustomerDetails = encodeURIComponent(customerDetails);
-      
-        // Construct the query parameters
-        const queryParams = new URLSearchParams({
+        // Create the request payload with all customer details
+        const payload = {
           at: "EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP",
-          customer_details: encodedCustomerDetails,
-        });
+          customer_details: {
+            given_name: user.given_name,
+            family_name: user.family_name,
+            email_address: user.email_address,
+          },
+        };
       
-        // Perform the API call with POST method
-        fetch(`https://google-square-4zxc4m7upa-el.a.run.app/customer/create?${queryParams}`, {
+        // Perform the API call with POST method and request body
+        fetch("https://google-square-4zxc4m7upa-el.a.run.app/customer/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
+          body: JSON.stringify(payload),
         })
           .then((response) => response.json())
           .then((data) => {
             console.log("API Response", data);
+      
+            // Store the customer_id in local storage
+            if (data.customer_id) {
+              localStorage.setItem("customer_id", data.customer_id);
+            }
       
             // You can update your state or perform other actions based on the API response here
             // For example, you might want to call setregistered(true) if the API call was successful.
@@ -81,6 +118,7 @@ const Cashier = () => {
             // Handle any error that occurred during the API call
           });
       };
+      
       
       
   return (
