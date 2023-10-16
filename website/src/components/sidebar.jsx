@@ -82,7 +82,7 @@ const ImageGrid = () => {
               <Link to="/overview">Overview</Link>
             </li>
             <li>
-            <a
+            {/* <a
                 href="/overview"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -115,7 +115,7 @@ const ImageGrid = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-              </a>
+              </a> */}
               <ul id="dropdown-pages" class="hidden py-2 space-y-2">
                 <li>
                   <a
@@ -208,7 +208,7 @@ const ImageGrid = () => {
               </ul>
             </li>
             <li>
-              <a
+              {/* <a
                 href="/messages"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -226,7 +226,8 @@ const ImageGrid = () => {
                 <span class="inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full text-primary-800 bg-primary-100 dark:bg-primary-200 dark:text-primary-800">
                   6
                 </span>
-              </a>
+              </a> */}
+              <Link to="/messages"></Link>
             </li>
             <li>
               <button

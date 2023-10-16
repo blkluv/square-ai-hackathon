@@ -3,7 +3,16 @@
   margin: 0 auto;
   text-align: center;
 }
-.blurred {
+.imageclass button{
+  display: none;
+}
+.imageclass:hover button{
+  display: block;
+}
+/* .imageclass:hover {
+  width: 11px;
+  height: 11px;
+} */.blurred {
   filter: blur(5px); /* Add the desired blur effect here */
 }
 
