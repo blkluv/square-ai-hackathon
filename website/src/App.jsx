@@ -12,7 +12,11 @@ import CreateLayout from "./components/CreateLayout";
 import LayoutManagement from "./components/LayoutManagement"
 import layoutsDashboard from "./pages/layoutsDashboard";
 import LayoutsDashboard from "./pages/layoutsDashboard";
+<<<<<<< HEAD
 import Redirect from "./components/redirect";
+=======
+import UserGraph from "./components/UserGraph";
+>>>>>>> c371f2223851d366df97dd3bccccd2a43cc14869
 // import Pag
 
 function App() {
@@ -33,6 +37,7 @@ function App() {
         <Route path="/layoutmanagement" element={<LayoutManagement />}></Route>
         <Route path="/layouts" element={<LayoutsDashboard />} />
         <Route path="/callback" element={<Redirect />} />
+        <Route path="/usergraphs" element={<UserGraph />} />
         </Routes>
       </Router>
       
