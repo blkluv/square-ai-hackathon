@@ -28,33 +28,38 @@ const MatrixElement = ({ value, rowIndex, colIndex, onDrop }) => {
 };
 const MatrixToLayout=(props)=>{
     const [matrix, setmatrix] = useState(props.matrix.matrix);
-    console.log(matrix)
     const handleDrop = (item, target) => {
       // Implement your logic for handling the drop action here,
       // which might involve swapping matrix elements.
       const before = matrix[item.rowIndex][item.colIndex];
       const after = matrix[target.rowIndex][target.colIndex] ;
-      const _matrix = matrix;
+      var _matrix = matrix;
       _matrix[item.rowIndex][item.colIndex] =  after;
       _matrix[target.rowIndex][target.colIndex] = before;
+      console.log("Matrix Updated",matrix,_matrix);
       setmatrix(_matrix);
-      console.log("HEre",item,target);
     };
     useEffect(()=>{console.log("matrix updated")},[matrix])
     return(
         <DndProvider backend={HTML5Backend}
         className="grid grid-cols-100 gap-0 p-5 bg-white rounded-lg w-fit"
         style={{ gridTemplateColumns: `repeat(${matrix.length}, 1fr)` }}>
-        {matrix.map((row, rowIndex) =>
-          row.map((image, colIndex) => (
-              <MatrixElement
-              key={colIndex}
-              value={image}
-              rowIndex={rowIndex}
-              colIndex={colIndex}
-              onDrop={handleDrop}
-            />
-            ))
+        {matrix.map((row, rowIndex) => {
+          return ( <div className="flex" key={rowIndex}>
+            {
+              row.map((image, colIndex) => (
+                  <MatrixElement
+                  key={colIndex}
+                  value={image}
+                  rowIndex={rowIndex}
+                  colIndex={colIndex}
+                  onDrop={handleDrop}
+                />
+                ))
+
+            }
+          </div>)
+        }
         )}
         </DndProvider>
     )

@@ -12,6 +12,7 @@ import CreateLayout from "./components/CreateLayout";
 import LayoutManagement from "./components/LayoutManagement"
 import layoutsDashboard from "./pages/layoutsDashboard";
 import LayoutsDashboard from "./pages/layoutsDashboard";
+import Cashier from "./components/Cashier";
 import Redirect from "./components/redirect";
 import UserGraph from "./components/UserGraph";
 // import Pag
@@ -33,6 +34,7 @@ function App() {
         <Route path="/createLayout" element={<CreateLayout />}></Route>
         <Route path="/layoutmanagement" element={<LayoutManagement />}></Route>
         <Route path="/layouts" element={<LayoutsDashboard />} />
+        <Route path="/cashier" element={ <Cashier /> }/>
         <Route path="/callback" element={<Redirect />} />
         <Route path="/usergraphs" element={<UserGraph />} />
         </Routes>
