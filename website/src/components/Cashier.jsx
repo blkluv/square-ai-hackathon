@@ -33,7 +33,6 @@ const Cashier = () => {
     }
     const handleSubmit=()=>{
         setLoading(true); 
-
         var inputObject = [];
         inputFields.map((inputField,key)=>{
             const _field = {name: inputField.name,quantity: inputField.quantity ,base_price_money:{amount: inputField.Value ,currency : 'USD'}};
