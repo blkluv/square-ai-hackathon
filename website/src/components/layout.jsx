@@ -87,7 +87,7 @@ const Layout = ({from,to}) => {
     setShowTooltip(!showTooltip);
     setTooltipContent(content);
   };
-
+//Fetch this from api
   const gridState = [
     [1, 1, 1, 0, 1, 1, 1],
     [1, 0, 0, 0, 1, 0, 1],
@@ -219,6 +219,13 @@ const Layout = ({from,to}) => {
     {to}  
     <button onClick={updatesource}>update source</button>
     <button onClick={updatedestination}>update destination</button> */}
+      {from}
+      {to}  
+      <div className="my-[3vh] grid grid-cols-2 gap-4">
+        <button onClick={updatesource}>update source</button>
+        <button onClick={updatedestination}>update destination</button>
+        
+      </div>
     </div>
   );
 };

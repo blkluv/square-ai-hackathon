@@ -93,3 +93,26 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.left-half {
+  width: 80%;
+  float: left;
+}
+.right-half {
+  width: 20%;
+  float: left;
+}
+
+/* Add some styles for better visibility */
+.left-half {
+  background-color: lightgray;
+}
+.right-half {
+  background-color: lightblue;
+}
+
+/* Clear the float to prevent layout issues */
+.clear {
+  clear: both;
+}

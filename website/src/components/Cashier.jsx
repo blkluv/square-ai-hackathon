@@ -5,6 +5,9 @@ import itemPrices from '../constants/itemCost';
 import Confetti from 'react-confetti'
 import useWindowSize from 'react-use/lib/useWindowSize'
 const Cashier = () => {
+
+
+
     const { width, height } = useWindowSize()
     const [inputFields, setinputFields] = useState([{name: '', quantity: '',Price: '',Value: ''}]);
     const itemsCosts = itemPrices;
@@ -34,10 +37,10 @@ const Cashier = () => {
     const handleSubmit=()=>{
         setLoading(true); 
         var inputObject = [];
-        inputFields.map((inputField,key)=>{
-            const _field = {name: inputField.name,quantity: inputField.quantity ,base_price_money:{amount: inputField.Value ,currency : 'USD'}};
-            inputObject.push(_field);
-        })
+        // inputFields.map((inputField,key)=>{
+        //     const _field = {name: inputField.name,quantity: inputField.quantity ,base_price_money:{amount: inputField.Value ,currency : 'USD'}};
+        //     inputObject.push(_field);
+        // })
         inputObject = inputFields.map((inputField) => ({
             name: inputField.name,
             quantity: inputField.quantity,

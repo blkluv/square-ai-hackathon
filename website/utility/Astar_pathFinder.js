@@ -4,8 +4,8 @@
 
 
 // Define the dimensions of the grid
-const ROWS = 7;
-const COLS = 7;
+let ROWS = 7;
+let COLS = 7;
 
 // Define structure for a cell
 class Cell {
@@ -66,6 +66,8 @@ function calculateDirection(current, neighbor) {
 function aStar(grid, startValue, endValue) {
     let start = new Cell(startValue[0],startValue[1])
     let end = new Cell(endValue[0],endValue[1])
+    ROWS = grid.length
+    COLS = grid.length
 
     // Create an open list (to be explored) and a closed list (already explored)
     const openList = [];
