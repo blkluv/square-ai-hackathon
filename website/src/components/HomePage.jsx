@@ -22,19 +22,17 @@ function HomePage() {
   };
 
   return (
-    <div className={`h-screen flex flex-col `}>
+    <div className={`h-auto flex flex-col overflow-hidden`}>
       <div className={`h-full hidden md:block `}>
         <ImageGrid />
       </div>
-
-      <div className="h-10"></div>
       <div className={`text-center ${isBlurred ? 'blurred' : ''}`}>
-      <Layout from={from} to={to} />
+        <Layout from={from} to={to} />
       </div>
-      <div className="flex-grow"></div>
-      <div className=" fixed bottom-0 w-full" style={{ borderRadius: "25px" ,backgroundColor:"rgba(0, 0, 0, 1)", boxShadow: "0 0 10px rgba(0, 0, 0, 0.8)"  }}>
-        <SpeechRecognizer toggleBlur={toggleBlur} updatefrom={updatefrom} updateto={updateto}/>
-      </div>
+      {/* <div className="fixed bottom-0 bg-black justify-center rounded-lg text-xl">
+        
+      </div> */}
+      <SpeechRecognizer toggleBlur={toggleBlur} updatefrom={updatefrom} updateto={updateto} />
     </div>
   );
 }
