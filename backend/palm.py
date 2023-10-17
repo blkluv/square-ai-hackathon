@@ -103,11 +103,11 @@ def model_output_to_from(req_input:str)->list:
     prompt=prompt
   )
   # convert the response to a list of tuples
-  print(response.result)
+  # print(response.result)
   opening = response.result.find("{")
   required_list = response.result[opening:]
   required_list = required_list.lstrip("`")
   required_list = required_list.rstrip("`")
   required_list = eval(required_list)
   return required_list
-print(model_output_to_from("i am at bananas"))
+# print(model_output_to_from("i am at bananas"))
