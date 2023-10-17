@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "react-beautiful-dnd": "^13.1.1",
-    "react-vis-graph-wrapper": "^0.1.3",
-    "reactjs-graphs": "^1.4.0"
-  }
-}
