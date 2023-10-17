@@ -3,7 +3,7 @@ const itemPrices = [
     {label: 'carrot',price: 0.99},        // Price for ""
     {label: 'apple',price: 1.49},        // Price for ""
     {label: 'banana',price: 0.99},        // Price for ""
-    {label: 'pineapple',price: 2.99},        // Price for ""
+    {label: 'milk',price: 2.99},        // Price for ""
     {label: 'watermelon',price: 3.49},        // Price for ""
     {label: 'grapes',price: 2.79},        // Price for ""
     {label: 'pen',price: 0.99},        // Price for ""

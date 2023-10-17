@@ -36,9 +36,9 @@ const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
             ])
             
             }
-            if(transcript.includes("pineapple") && transcript.includes("Ice Cream")){
+            if(transcript.includes("milk") && transcript.includes("Ice Cream")){
                 console.log("all present")
-                updatefrom("pineapple")
+                updatefrom("milk")
                 updateto("icecream")
             }
         }, 3000); // 5 seconds

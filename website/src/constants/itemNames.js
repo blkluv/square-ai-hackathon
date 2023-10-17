@@ -12,7 +12,7 @@ const itemNames = {
     10: "carrot",
     11: "apple",
     12: "banana",
-    13: "pineapple",
+    13: "milk",
     14: "watermelon",
     15: "grapes",
     16: "milk",
