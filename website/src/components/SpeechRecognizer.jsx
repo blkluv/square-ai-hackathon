@@ -77,7 +77,7 @@ const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
     return (
         <div>
             
-            {!listening&& checklist!=[]&& <ul className="m-5 text-left">
+            {!listening&& checklist!=[]&& <ul className="text-center">
         {checklist.map((ingredient, index) => (
           <li key={index}>
             <input
@@ -107,18 +107,18 @@ const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
             {!listening ?
                 (checklist.length==0
                     ?
-                <button onClick={startListening} style={{background:"none" , width:"100%"}}>Chat with AI</button>
+                <button onClick={startListening} className="w-full fixed bottom-0 right-0">Chat with AI</button>
                     :
                 null)
                 :
-                <button onClick={stopListening}>Stop</button>
+                <button onClick={stopListening} className="mb-5">Stop</button>
             }
-            {listening&&<button onClick={resetTranscript} className="ml-5">Reset</button>}
+            {listening&&<button onClick={resetTranscript} className="ml-5 mb-5">Reset</button>}
 
 
             {
                 listening && <div className="relative h-2 w-full">
-                    <div className="absolute bottom-0 left-0 right-0 h-full w-full animate-gradient" id="glow-content"></div>
+                    <div className="absolute bottom-0 h-full w-full animate-gradient" id="glow-content"></div>
                 </div>
             }
         </div>
