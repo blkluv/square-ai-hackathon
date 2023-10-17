@@ -207,10 +207,13 @@ const Layout = ({from,to}) => {
       {"destination "+destination.row+" , "+destination.col}
 
       </div>
-    {from}
-    {to}  
-    <button onClick={updatesource}>update source</button>
-    <button onClick={updatedestination}>update destination</button>
+      {from}
+      {to}  
+      <div className="my-[3vh] grid grid-cols-2 gap-4">
+        <button onClick={updatesource}>update source</button>
+        <button onClick={updatedestination}>update destination</button>
+        
+      </div>
     </div>
   );
 };
