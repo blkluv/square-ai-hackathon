@@ -479,9 +479,9 @@ def get_model_data(at):
     print(result.errors)
     
 @app.post("/product/graph")
-def get_matrix(at):
+def get_matrix(at:Annotated[str, Body()]):
   """
-  param:
+  body_param:
   EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP
   """
   try:
