@@ -2,11 +2,15 @@ import {useState} from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import itemPrices from '../constants/itemCost';
-
+import Confetti from 'react-confetti'
+import useWindowSize from 'react-use/lib/useWindowSize'
 const Cashier = () => {
+    const { width, height } = useWindowSize()
     const [inputFields, setinputFields] = useState([{name: '', quantity: '',Price: '',Value: ''}]);
     const itemsCosts = itemPrices;
     const [registered, setregistered] = useState(false);
+    const [OrderID,setOrderID]=useState(null)
+    const [InvoiceID,setInvoiceID]=useState(null)
     const [userLogin, setuserLogin] = useState([{
         given_name: "",
         family_name: "",
@@ -63,7 +67,30 @@ const Cashier = () => {
     })
     .then((data) => {
       // Handle the response data here
-      console.log(data);
+      setOrderID(data.order_id)
+      console.log(data.order_id);
+      const Reqdata={
+            at: "EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP",
+            order_id: data.order_id,
+            customer_id: localStorage.getItem("customer_id")
+          }
+          console.log(Reqdata)
+      fetch("https://google-square-4zxc4m7upa-el.a.run.app/invoice/create",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify( Reqdata),
+      }) .then((response) => {
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setInvoiceID(data.invoice_id)
+        console.log("recieved",data)
+      })
     })
     .catch((error) => {
       // Handle errors here
@@ -123,9 +150,13 @@ const Cashier = () => {
       
   return (
     <div>
-        <p className='text-4xl'>Cashier</p>
+        {
+            !InvoiceID ?
+            <div>
         { registered ? 
             <div>
+                <p className='text-xl'>Enter Invoice Data</p>
+
                 <form>
                     {inputFields.map((field,i)=>{
                         return(
@@ -156,6 +187,8 @@ const Cashier = () => {
             </div>
         :
         <div>
+            <p className='text-xl'>Enter Customer Data</p>
+
             <form>
                 <div  className='flex  my-2'>
             <input className='flex rounded-xl px-5 mx-2 py-2' name='given_name' placeholder="Given Name" onChange={(event)=>{handleInputChange(event)}} required value={userLogin.given_name}/>
@@ -166,6 +199,19 @@ const Cashier = () => {
             </form>
         </div>
         }
+            </div>
+            :<div>
+                <Confetti
+      width={width}
+      height={height}
+      recycle={false} 
+    />
+                <h1>Transaction successful</h1>
+                <p>{InvoiceID}</p>
+                <button onClick={()=>{setInvoiceID(null);setregistered(false)}}>Next customer</button>
+            </div>
+        }
+        
         
     </div>
   )
