@@ -77,7 +77,7 @@ const LayoutsDashboard = () => {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
   return (
-    <div className='w-full'>
+    <div className='w-full mt-10'>
       {tem&&
         <Confetti
         width={width}
@@ -114,7 +114,7 @@ const LayoutsDashboard = () => {
   </div>
 
     }
-    <h1 className='mb-5'>Recent</h1>
+    <h1 className=' mt-10 mb-5'>Recent</h1>
 
       {isLoading ? (
         // Display a loading animation using Tailwind CSS classes

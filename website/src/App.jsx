@@ -8,6 +8,7 @@ import SellerOverview from "./components/SellerOverview";
 import Messages from "./components/Messages";
 import Docs from "./components/Docs";
 import Help from "./components/Help";
+import Navbar from "./components/navbar";
 import CreateLayout from "./components/CreateLayout";
 import LayoutManagement from "./components/LayoutManagement"
 import layoutsDashboard from "./pages/layoutsDashboard";
@@ -23,7 +24,7 @@ function App() {
   return (
     <>
       <Router>
-     
+      <Navbar/>
 
         <Routes>
         {/* <Route path="/overview" element={<SellerOverview />} /> Use `element` prop */}
