@@ -109,9 +109,7 @@
 .left-half {
   background-color: lightgray;
 }
-.right-half {
-  background-color: lightblue;
-}
+
 
 /* Clear the float to prevent layout issues */
 .clear {
