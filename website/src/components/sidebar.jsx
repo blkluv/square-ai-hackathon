@@ -356,7 +356,7 @@ const ImageGrid = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span class="ml-3">Help</span>
+                <span class="ml-3">QR code </span>
               </a>
             </li>
           </ul>

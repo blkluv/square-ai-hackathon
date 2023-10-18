@@ -26,18 +26,19 @@ function App() {
      
 
         <Routes>
-        <Route path="/overview" element={<SellerOverview />} /> {/* Use `element` prop */}
-        <Route path="/" element={<HomePage />} /> {/* Use `element` prop */}
-        <Route path="/messages" element={<Messages />} />
-        <Route path="/docs" element={<Docs />} />
-        <Route path="/help" element={<Help />} />
+        {/* <Route path="/overview" element={<SellerOverview />} /> Use `element` prop */}
+        {/* <Route path="/messages" element={<Messages />} /> */}
+        {/* <Route path="/docs" element={<Docs />} /> */}
         {/* <Route path="/createLayout" element={<CreateLayout />}></Route> */}
         <Route path="/layoutmanagement" element={<LayoutManagement />}></Route>
         <Route path="/layouts" element={<LayoutsDashboard />} />
         <Route path="/cashier" element={ <Cashier /> }/>
         <Route path="/callback" element={<Redirect />} />
         <Route path="/usergraphs" element={<UserGraph />} />
+        <Route path="/" element={<HomePage />} /> {/* Use `element` prop */}
+        <Route path="/help" element={<Help />} />        
         </Routes>
+
       </Router>
       
     </>
