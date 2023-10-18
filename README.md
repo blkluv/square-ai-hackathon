@@ -5,7 +5,28 @@
  ![Intro](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/website/src/assets/pacman.gif?raw=true)
 
 
-# 
+# A Game-Changer for Grocery Shopping and Store Management
+
+### Tired of getting lost in the grocery store🏪 or spending hours searching for items🛒? Look no further! Storeguide is here to revolutionize your shopping experience.
+
+## For Shoppers:
+
+Say goodbye to confusion while shopping.
+- Simply tell our AI what you need, and it'll guide you to the precise location of your desired products.
+- Need help making a cake? Just ask our AI for a list of ingredients and their locations.
+## For Business Owners:
+
+* Create store layouts effortlessly with a click or drag-and-drop based on Square API data.
+* Get product arrangement suggestions to optimize your store's performance.
+* Harness the power of AI to understand customer patterns and insights.
+* Create custom gift cards for specific customer groups based on past purchase behavior.
+Shopping becomes fun and insightful with Storeguide. Try it today!
+
+
+
+
+
+
 ## 1)Layout Design:
 * ## Our appilicaion creates a layout to the market with a focus on user experience , for example: giving better recommendations for layout based on the invoices received from the customer (i.e the optimal placement of products).
 ![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/codes/pics/Layout.png?raw=true)
