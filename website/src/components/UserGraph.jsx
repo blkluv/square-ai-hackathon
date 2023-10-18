@@ -87,7 +87,7 @@ const graph = getUserGraph(hardcoded_list)
       },
   };
   return (
-    <div>
+    <div className="mt-20">
       <div className="left-half">
         <Graph
           graph={graph}
