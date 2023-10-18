@@ -387,7 +387,7 @@ def create_order(at:Annotated[str, Body()],order_list:Order,category:str = "Food
         pprint.pprint(result.errors)
         return "Error! Please try later"
     
-@app.get("/customer/get")
+@app.post("/customer/get")
 def get_customer(at:Annotated[str, Body()]):
     """
     Example request params:
@@ -512,3 +512,47 @@ def get_matrix(at:Annotated[str, Body()]):
     print("There is no valid data. Calling /model from inside. Will take a couple of minutes...")
     data = get_model_data(at)
   return str(user_group(data))
+
+@app.post("/gift/group")
+def gift_customer_groups(at:Annotated[str,Body()],customer_ids:Annotated[List[str],Body()]):
+  """
+  body_param:
+  at - EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP,
+  customer_ids - ["MK42BJ196CFB654Q1XB4JZBWWC","3DSHY9B3JGGGWRBRBVHGFQR4T8","A00MFT39GAD3AGDRWHHC5747CC"]
+  """
+  client = Client(
+    access_token=at,
+    environment='sandbox')
+  for id in customer_ids:
+    print("hi")
+    idempotency_key = str(uuid.uuid4())
+    result = client.gift_cards.create_gift_card(
+      body = {
+        "idempotency_key": idempotency_key,
+        "location_id": location,
+        "gift_card": {
+          "type": "DIGITAL"
+        }
+      }
+    )
+    
+
+    if result.is_success():
+      gift_id = result.body.get('gift_card').get('id') 
+      print("Gift Card Succesfully Created with ID: " + gift_id)
+      r = client.gift_cards.link_customer_to_gift_card(
+        gift_card_id = gift_id,
+        body = {
+          "customer_id": id
+        }
+      )
+
+      if r.is_success():
+        print("Gift card successfully linked to customer group")
+        print("Successfully linked sent a gift card to the customer group!")
+      elif r.is_error():
+        print(r.errors)
+    elif result.is_error():
+      print(result.errors)
+      return "Error! Please try again later"
+  return "Successfully sent the gift cards!"
