@@ -31,7 +31,7 @@ function App() {
         <Route path="/messages" element={<Messages />} />
         <Route path="/docs" element={<Docs />} />
         <Route path="/help" element={<Help />} />
-        <Route path="/createLayout" element={<CreateLayout />}></Route>
+        {/* <Route path="/createLayout" element={<CreateLayout />}></Route> */}
         <Route path="/layoutmanagement" element={<LayoutManagement />}></Route>
         <Route path="/layouts" element={<LayoutsDashboard />} />
         <Route path="/cashier" element={ <Cashier /> }/>

@@ -26,22 +26,32 @@ const MatrixElement = ({ value, rowIndex, colIndex, onDrop }) => {
     </div>
   );
 };
-const MatrixToLayout=(props)=>{
-    const [matrix, setmatrix] = useState(props.matrix.matrix);
-    const handleDrop = (item, target) => {
-      // Implement your logic for handling the drop action here,
-      // which might involve swapping matrix elements.
-      const before = matrix[item.rowIndex][item.colIndex];
-      const after = matrix[target.rowIndex][target.colIndex] ;
-      var _matrix = matrix;
-      _matrix[item.rowIndex][item.colIndex] =  after;
-      _matrix[target.rowIndex][target.colIndex] = before;
-      console.log("Matrix Updated",matrix,_matrix);
-      setmatrix(_matrix);
-    };
-    useEffect(()=>{console.log("matrix updated")},[matrix])
+const MatrixToLayout = (props) => {
+  const [matrix, setMatrix] = useState(props.matrix.matrix);
+
+  const handleDrop = (item, target) => {
+    setMatrix((prevMatrix) => {
+      // Create a deep copy of the matrix to avoid mutation.
+      const updatedMatrix = JSON.parse(JSON.stringify(prevMatrix));
+      const before = updatedMatrix[item.rowIndex][item.colIndex];
+      const after = updatedMatrix[target.rowIndex][target.colIndex];
+      updatedMatrix[item.rowIndex][item.colIndex] = after;
+      updatedMatrix[target.rowIndex][target.colIndex] = before;
+      console.log("Matrix Updated", matrix, updatedMatrix);
+      const temp=props.matrix
+      temp.matrix=updatedMatrix
+      props.handlematrixupdate(temp)
+      return updatedMatrix;
+    });
+  };
+
+  useEffect(() => {
+    console.log("Matrix updated");
+
+  }, [matrix]);
     return(
-        <DndProvider backend={HTML5Backend}
+      <div className="bg-white p-5 rounded-xl">
+<DndProvider backend={HTML5Backend}
         className="grid grid-cols-100 gap-0 p-5 bg-white rounded-lg w-fit"
         style={{ gridTemplateColumns: `repeat(${matrix.length}, 1fr)` }}>
         {matrix.map((row, rowIndex) => {
@@ -62,6 +72,7 @@ const MatrixToLayout=(props)=>{
         }
         )}
         </DndProvider>
-    )
+      </div>
+        )
 }
 export default MatrixToLayout;

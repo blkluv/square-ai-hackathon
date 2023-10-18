@@ -297,7 +297,7 @@ const ImageGrid = () => {
           <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
               <a
-                href="/docs"
+                href="/cashier"
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
               >
                 <svg
@@ -314,7 +314,7 @@ const ImageGrid = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span class="ml-3">Docs</span>
+                <span class="ml-3">Cashier</span>
               </a>
             </li>
             <li>
