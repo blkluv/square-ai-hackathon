@@ -57,7 +57,7 @@ def user_group(sample):
   for i in range(len(x_reduced)):
     points.append([x_reduced[i][0], x_reduced[i][1], x_reduced[i][2], clusters[i]+1, i])
 
-  print(points)
+  # print(points)
   return points
 
 sample = [
@@ -116,5 +116,3 @@ sample = [
     ]
   ]
 ]
-
-user_group(sample)

@@ -5,6 +5,7 @@ from square.client import Client
 from base_models import customer, Order
 import os,time,json
 from dotenv import load_dotenv
+from user_groups import user_group
 import uuid,pprint
 from categories import categorize
 from graph import product_graph
@@ -494,3 +495,20 @@ def get_matrix(at:Annotated[str, Body()]):
     print("There is no valid data. Calling /model from inside. Will take a couple of minutes...")
     data = get_model_data(at)
   return str(product_graph(data))
+
+@app.post("/user_groups")
+def get_matrix(at:Annotated[str, Body()]):
+  """
+  body_param:
+  EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP
+  """
+  try:
+    
+    with open('sample.json') as f:
+      data = json.load(f)
+      if data is not None:
+        print("Using the invoice data from past. Need to update this file each day for optimal results")
+  except:
+    print("There is no valid data. Calling /model from inside. Will take a couple of minutes...")
+    data = get_model_data(at)
+  return str(user_group(data))
