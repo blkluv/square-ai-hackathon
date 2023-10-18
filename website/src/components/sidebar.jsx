@@ -55,8 +55,8 @@ const ImageGrid = () => {
               </Link>
             </li>
             <li>
-            <Link
-                to="/cashier"
+            <div
+                
                 class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
               >
                 <svg
@@ -73,8 +73,11 @@ const ImageGrid = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
+                <Link to="/cashier">
                 <span class="ml-3">Usergraph</span>
-              </Link>
+
+                </Link>
+              </div>
             </li>
             <li>
             <Link to="/layouts">
