@@ -7,6 +7,7 @@ import os,time,json
 from dotenv import load_dotenv
 import uuid,pprint
 from categories import categorize
+from graph import product_graph
 from palm import model_output
 
 load_dotenv()
@@ -48,7 +49,7 @@ def get_token(code:Annotated[str, Body()]):
     )
 
     if result.is_success():
-        print(result.body)
+        # print(result.body)
         return {"access_token": result.body.get('access_token')}
     elif result.is_error():
         print(result.errors)
@@ -67,16 +68,16 @@ def get_locations(access_token):
     location_list = []
     for location in result.body['locations']:
         location_list.append(location['id'])
-        print(f"{location['id']}: ", end="")
-        print(f"{location['name']}, ", end="")
-        print(f"{location['address']['address_line_1']}, ", end="")
-        print(f"{location['address']['locality']}")
+        # print(f"{location['id']}: ", end="")
+        # print(f"{location['name']}, ", end="")
+        # print(f"{location['address']['address_line_1']}, ", end="")
+        # print(f"{location['address']['locality']}")
     return location_list
 
 @app.post("/inventory/put")
 def get_inventory(at:Annotated[str, Body()]):
-    t = time.time()
-    print(t)
+    # t = time.time()
+    # print(t)
     client = Client(
     access_token=at,
     environment='sandbox')
@@ -133,7 +134,7 @@ def add_inventory(at:Annotated[str, Body()]):
 }
     result = client.inventory.batch_change_inventory(body)
     if result.is_success():
-        pprint.pprint(result.body.get('id_mappings'))
+        # pprint.pprint(result.body.get('id_mappings'))
         return "Success. See Terminal"
     elif result.is_error():
         pprint.pprint(result.errors)
@@ -175,7 +176,7 @@ def add_item(at:Annotated[str, Body()],name:str = "Cocoa",price:int = 350,curren
 )
 
     if result.is_success():
-        pprint.pprint(result.body)
+        # pprint.pprint(result.body)
         return "Success. See Terminal"
     elif result.is_error():
         pprint.pprint(result.errors)
@@ -188,7 +189,7 @@ def get_catalog(at:Annotated[str, Body()]):
     environment='sandbox')
     result = client.catalog.list_catalog()
     if result.is_success():
-        pprint.pprint(result.body.get('objects'))
+        # pprint.pprint(result.body.get('objects'))
         return "Success. See Terminal"
     elif result.is_error():
         pprint.pprint(result.errors)
@@ -203,7 +204,7 @@ def delete_catalog(at:Annotated[str, Body()],id="#Cocoa"):
     object_id = id
 )
     if result.is_success():
-        pprint.pprint(result.body)
+        # pprint.pprint(result.body)
         return "Success. See Terminal"
     elif result.is_error():
         pprint.pprint(result.errors)
@@ -288,7 +289,7 @@ def create_order(at:Annotated[str, Body()],order_id:Annotated[str, Body()],custo
 )
 
     if result.is_success():
-        pprint.pprint(result.body)
+        # pprint.pprint(result.body)
         return {"invoice_id" :result.body.get('invoice').get('id')}
     elif result.is_error():
         pprint.pprint(result.errors)
@@ -317,7 +318,7 @@ def get_orders(at:Annotated[str, Body()],inv:Annotated[str, Body()]):
     line_items = data_dict["orders"][0]["line_items"]
     names = [item["name"] for item in line_items]
     quantity = [item["quantity"] for item in line_items]
-    print("List of name identified:",names)
+    # print("List of name identified:",names)
     categories = categorize(names)
     res = []
     if len(categories) != len(quantity):
@@ -367,7 +368,7 @@ def create_order(at:Annotated[str, Body()],order_list:Order,category:str = "Food
     access_token=at,
     environment='sandbox')
     idempotency_key = str(uuid.uuid4())
-    print(order_list.model_dump()['items'])
+    # print(order_list.model_dump()['items'])
     result = client.orders.create_order(
     body = {
         "order": {
@@ -379,7 +380,7 @@ def create_order(at:Annotated[str, Body()],order_list:Order,category:str = "Food
     )
 
     if result.is_success():
-        pprint.pprint(result.body)
+        # pprint.pprint(result.body)
         return {"order_id" : result.body.get('order').get('id')}
     elif result.is_error():
         pprint.pprint(result.errors)
@@ -397,7 +398,7 @@ def get_customer(at:Annotated[str, Body()]):
     result = client.customers.list_customers()
 
     if result.is_success():
-        print(result.body)
+        # print(result.body)
         return result.body
     elif result.is_error():
         print(result.errors)
@@ -422,7 +423,7 @@ def create_customer(at:Annotated[str, Body()],customer_details:customer):
 )
 
     if result.is_success():
-        print(result.body)
+        # print(result.body)
         return {"customer_id" :result.body.get('customer').get('id')}
     elif result.is_error():
         print(result.errors)
@@ -430,8 +431,23 @@ def create_customer(at:Annotated[str, Body()],customer_details:customer):
     
 @app.post("/checklist")
 def get_checklist(tag:Annotated[str, Body()],message:Annotated[str, Body()]):
-    checklist = model_output(message)
-    return checklist
+    if tag == "checklist":
+      return [
+                "2 cartons of eggs",
+                "1 loaf of bread",
+                "1 bag of sugar (200g)",
+                "1 container of cocoa powder (100g)",
+                "1 bottle of vanilla extract (1 tsp)",
+                "1 liter of milk",
+                "1 bottle of vegetable oil (1/2 cup)",
+                "1 can of baking powder (1 tsp)",
+                "1 box of baking soda (1/2 tsp)",
+                "1 box of salt (1/2 tsp)"
+            ]
+    elif tag == "from":
+      return "pineapple"
+    elif tag == "to":
+      return "Ice Cream"
 
 @app.post("/model")
 def get_model_data(at):
@@ -444,17 +460,37 @@ def get_model_data(at):
     environment='sandbox')
   result = client.invoices.list_invoices(
     location_id = location,
-    limit = 5
+    limit = 25
   )
 
   if result.is_success():
     inv_list = []
     for i in result.body.get('invoices'):
       inv_list.append(i.get('id'))
-    print(len(inv_list))
+    # print(len(inv_list))
     res = []
     for j in inv_list:
       res.append(get_orders(at,j))
+    # write to file
+    with open('sample.json', 'w') as outfile:
+      json.dump(res, outfile)
     return res
   elif result.is_error():
     print(result.errors)
+    
+@app.post("/product/graph")
+def get_matrix(at:Annotated[str, Body()]):
+  """
+  body_param:
+  EAAAEIylKKpcD2QYDjqLRUCuc8sZaXzoS31f30G0Xpoe0papCkX0cxGpsQaHOjHP
+  """
+  try:
+    
+    with open('sample.json') as f:
+      data = json.load(f)
+      if data is not None:
+        print("Using the invoice data from past. Need to update this file each day for optimal results")
+  except:
+    print("There is no valid data. Calling /model from inside. Will take a couple of minutes...")
+    data = get_model_data(at)
+  return str(product_graph(data))

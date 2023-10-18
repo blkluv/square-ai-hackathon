@@ -1,4 +1,6 @@
 square
 .env
 node_modules
+backend/__pycache__
+google-square
 invoices.csv

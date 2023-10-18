@@ -60,7 +60,7 @@ def categorize(l: List[str])->List[str]:
     **defaults,
     prompt=prompt
     )
-    print("response",response.result)
+    # print("response",response.result)
     s = response.result.lstrip("`")
     s = s.rstrip("`")
     if type(eval(s))!=list:
