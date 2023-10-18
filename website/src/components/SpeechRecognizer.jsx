@@ -4,6 +4,7 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
         // State to hold the timer ID
     const [timerId, setTimerId] = useState(null);
+    const [IsFirst,setIsFirst]=useState(true);
     const [isLoading,setIsLoading]=useState(false)
     const [checklist, setChecklist] = useState([]);
     const {
@@ -12,44 +13,103 @@ const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
         resetTranscript,
         browserSupportsSpeechRecognition
     } = useSpeechRecognition();
+
     useEffect(() => {
         console.log("Transcript updated:", transcript);
-
+    
         // Start the timer when the transcript is updated
         const newTimerId = setTimeout(() => {
-            if(transcript!=""){
-                stopListening()
+            console.log("isfirst",IsFirst)
+
+            if (transcript !== "" && !IsFirst) {
+                stopListening();
             }
             if (transcript.includes("checklist")) {
-            toggleBlur(); // Start listening, so blur the parent component
-            setChecklist([
-                "2 cartons of eggs",
-                "1 loaf of bread",
-                "1 bag of sugar (200g)",
-                "1 container of cocoa powder (100g)",
-                "1 bottle of vanilla extract (1 tsp)",
-                "1 liter of milk",
-                "1 bottle of vegetable oil (1/2 cup)",
-                "1 can of baking powder (1 tsp)",
-                "1 box of baking soda (1/2 tsp)",
-                "1 box of salt (1/2 tsp)"
-            ])
-            
-            }
-            if(transcript.includes("pineapple") || transcript.includes("Ice Cream")){
-                console.log("all present")
-                updatefrom("pineapple")
-                updateto("icecream")
-            }
-        }, 3000); // 5 seconds
+                // Make an HTTP request to the specified endpoint
+                fetch('https://google-square-4zxc4m7upa-el.a.run.app/checklist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        tag: 'checklist',
+                        message: transcript
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json(); // Parse the JSON response
+                    } else {
+                        throw new Error('Failed to fetch checklist data');
+                    }
+                setIsLoading(false)
 
+                })
+                .then(data => {
+                    console.log("checklist gave : ",data)
+                    // Set the fetched checklist data in the state
+                    setChecklist(data);
+                })
+                .catch(error => {
+                    // Handle any errors that occur during the HTTP request
+                    console.error(error);
+                });
+            }
+            else if (transcript !== ""){
+                const tag_c = IsFirst ? 'to' : 'from';
+                // Make an HTTP request to the specified endpoint
+                fetch('https://google-square-4zxc4m7upa-el.a.run.app/checklist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        tag: tag_c,
+                        message: transcript
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json(); // Parse the JSON response
+                    } else {
+                        throw new Error('Failed to fetch checklist data');
+                    }
+                setIsLoading(false)
+
+                })
+                .then(data => {
+                    console.log("endpoint for "+tag_c+" gave : ",data)
+                    // Set the fetched checklist data in the state
+                    if(IsFirst){
+                        updateto(data)
+                        resetTranscript(); 
+                        setIsFirst(false);
+                    }
+                    else{
+                        updatefrom(data)
+                        setIsFirst(true);
+                    }
+                })
+                .catch(error => {
+                    // Handle any errors that occur during the HTTP request
+                    console.error(error);
+                });
+            }
+            // if (transcript.includes("pineapple") || transcript.includes("Ice Cream")) {
+            //     console.log("all present");
+            //     updatefrom("pineapple");
+            //     updateto("icecream");
+            // }
+        }, 3000); // 3 seconds
+    
         // Clear the previous timer when the transcript updates again
         if (timerId) {
             clearTimeout(timerId);
         }
-
+    
         setTimerId(newTimerId);
     }, [transcript]);
+    
 
 
     const startListening = () => {
@@ -77,7 +137,8 @@ const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
     return (
         <div>
             
-            {!listening&& checklist!=[]&& <ul className="text-center">
+            {!listening&& checklist!=[]&& 
+            <ul className="text-center" style={{ textAlign: 'left' }}>
         {checklist.map((ingredient, index) => (
           <li key={index}>
             <input
@@ -89,6 +150,8 @@ const SpeechRecognizer = ({ toggleBlur , updatefrom , updateto }) => {
           </li>
         ))}
       </ul>}
+      {!IsFirst && listening && <div><p className="text-gray-400">where exactly are you! <br/>can you tell any product near you</p></div>}
+
             {listening ?<p className="p-5 m-5">{transcript}</p>:null}
             {checklist.length!=0 &&
                 <div>

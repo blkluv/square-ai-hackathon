@@ -21,67 +21,70 @@ const Layout = ({from,to}) => {
   const [tooltipContent, setTooltipContent] = useState('');
   const [foundKey, setFoundKey] = useState(null);
   useEffect(() => {
-    if(from){
-    setSource({ row: 1, col: 1 })
-    }
+    console.log("useEffect from ran : ",from)
+
+    // if(from){
+    // setSource({ row: 1, col: 1 })
+    // }
     // Update source when "from" is updated
     // console.log("here",from);
-    // if (from) {
-    //   const names = itemNames;
-    //   var itemID ;
-    //   var updatedRow ;
-    //   var updatedCol;
-    //   for(var id in names){
-    //     if(names[id] === from){
-    //       console.log("Found at : ",id);
-    //       itemID = id;
-    //     }
-    //   }
-    //   grid.map((row,rowIndex)=>{
-    //     row.map((col,colIndex)=>{
-    //       if(itemID == grid[rowIndex][colIndex]){
-    //         console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
-    //         updatedRow = rowIndex;
-    //         updatedCol = colIndex;
-    //       }
-    //     })
-    //   })
-    //   console.log("updates",updatedRow,updatedCol);
-    //   setSource({ row: updatedRow, col: updatedCol });
-    // }
+    if (from) {
+      const names = itemNames;
+      var itemID ;
+      var updatedRow ;
+      var updatedCol;
+      for(var id in names){
+        if(names[id] === from){
+          console.log("Found at : ",id);
+          itemID = id;
+        }
+      }
+      grid.map((row,rowIndex)=>{
+        row.map((col,colIndex)=>{
+          if(itemID == grid[rowIndex][colIndex]){
+            console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
+            updatedRow = rowIndex;
+            updatedCol = colIndex;
+          }
+        })
+      })
+      console.log("updates",updatedRow,updatedCol);
+      setSource({ row: updatedRow, col: updatedCol });
+    }
   }, [from]);
 
   useEffect(() => {
-    if(from){
-    // setDestination({ row: 2, col: 6 })
-    setDestination({ row: 7, col: 1 })
+    console.log("useEffect from to : ",to)
+    // if(to){
+    // // setDestination({ row: 2, col: 6 })
+    // setDestination({ row: 7, col: 1 })
 
-    }
+    // }
     // // Update destination when "to" is updated
     // console.log("To",to);
-    // if (to) {
-    //   const names = itemNames;
-    //   var itemID ;
-    //   var updatedRow ;
-    //   var updatedCol;
-    //   for(var id in names){
-    //     if(names[id] === to){
-    //       console.log("Found at : ",id);
-    //       itemID = id;
-    //     }
-    //   }
-    //   grid.map((row,rowIndex)=>{
-    //     row.map((col,colIndex)=>{
-    //       if(itemID == grid[rowIndex][colIndex]){
-    //         console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
-    //         updatedRow = rowIndex;
-    //         updatedCol = colIndex;
-    //       }
-    //     })
-    //   })
-    //   console.log("updates",updatedRow,updatedCol);
-    //   setDestination({ row: updatedRow, col: updatedCol });
-    // }
+    if (to) {
+      const names = itemNames;
+      var itemID ;
+      var updatedRow ;
+      var updatedCol;
+      for(var id in names){
+        if(names[id] === to){
+          console.log("Found at : ",id);
+          itemID = id;
+        }
+      }
+      grid.map((row,rowIndex)=>{
+        row.map((col,colIndex)=>{
+          if(itemID == grid[rowIndex][colIndex]){
+            console.log("Final",grid[rowIndex][colIndex],rowIndex,colIndex);
+            updatedRow = rowIndex;
+            updatedCol = colIndex;
+          }
+        })
+      })
+      console.log("updates",updatedRow,updatedCol);
+      setDestination({ row: updatedRow, col: updatedCol });
+    }
   }, [to]);
   const handleImageClick = (content) => {
     setShowTooltip(!showTooltip);
@@ -167,9 +170,9 @@ const Layout = ({from,to}) => {
   };
   const grid = [
     [ 16,  25,  12,  1,  41,  102,  10,0],
-    [ 13,  1,  1,  1,  50,  1,  45,0],
+    [ 13,  1,  1,  1,  50,  1,  58,0],
     [ 27,  1,  1,  1,  52,  1,  18,0],
-    [ 15,  66,  67,  1,  55,  1,  39,0],
+    [ 15,  62,  67,  1,  55,  1,  39,0],
     [ 0,  0,  99,  1,  68,  1,  30,0],
     [ 0,  61,  93,  1,  1,  1,  35,0],
     [ 0,  74,  1,  1,  52,  0,  40,0],
@@ -215,17 +218,14 @@ const Layout = ({from,to}) => {
       {/* {"destination "+destination.row+" , "+destination.col} */}
 
       </div>
-    {/* {from}
-    {to}  
-    <button onClick={updatesource}>update source</button>
-    <button onClick={updatedestination}>update destination</button> */}
-      {from}
-      {to}  
+
       <div className="my-[3vh] grid grid-cols-2 gap-4">
-        <button onClick={updatesource}>update source</button>
-        <button onClick={updatedestination}>update destination</button>
-        
+        {/* <button onClick={updatesource}>update source</button>
+        <button onClick={updatedestination}>update destination</button> */}
+
       </div>
+      <button className="mx-auto">Best viewed in mobile</button>
+
     </div>
   );
 };

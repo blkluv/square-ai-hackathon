@@ -9,12 +9,13 @@ function HomePage() {
   const [from,setfrom]=useState(null)
   const [to,setto]=useState(null)
   const updatefrom=(str)=>{
-    console.log("ran")
+    console.log("updated from : ",str)
     setfrom(str)
   }
   const updateto=(str)=>{
+    console.log("updated to: ",str)
     setto(str);
-    console.log("got ", from , to)
+    // console.log("got ", from , to)
   }
   // Function to toggle the blur state
   const toggleBlur = () => {
@@ -32,7 +33,9 @@ function HomePage() {
       {/* <div className="fixed bottom-0 bg-black justify-center rounded-lg text-xl">
         
       </div> */}
+      <div>
       <SpeechRecognizer toggleBlur={toggleBlur} updatefrom={updatefrom} updateto={updateto} />
+      </div>
     </div>
   );
 }
