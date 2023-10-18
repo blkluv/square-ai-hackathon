@@ -1,11 +1,14 @@
 # [square-ai-hackathon](https://www.youtube.com/watch?v=9OfL9H6AmhQ)
-![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/codes/pics/square.png)
+
+![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/codes/pics/square.png?raw=true)
  
+ ![Intro](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/website/src/assets/pacman.gif?raw=true)
+
 
 # 
 ## 1)Layout Design:
 * ## Our appilicaion creates a layout to the market with a focus on user experience , for example: giving better recommendations for layout based on the invoices received from the customer (i.e the optimal placement of products).
-![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/codes/pics/Layout.png)
+![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/codes/pics/Layout.png?raw=true)
 
 ## 2)Accessibility Features:
 * ## our application also enhances Square's accessibility by incorporating AI-driven features such as voice-guided navigation, for example: Customer gives his current location in voice as input and we'll show the shortest possible path for the customer to reach his desired product destination. 
