@@ -14,8 +14,7 @@
 * ## Our application also provides a product graph which shows the relationship between the products based on the customer's purchase history, for example: if a customer buys a product A then he is more likely to buy product B, so we'll show the relationship between the products in the form of a graph. This is also useful for constructing layout design.
 
 ## 4)Customer Segmentation:
-* ## Our application also provides customer segmentation based on the customer's purchase history and make customer groups. For example: if customer A buys product a, b and c
-and customer B buys product a, b and d then we'll group them together and show them as a group. 
+* ## Our application also provides customer segmentation based on the customer's purchase history and make customer groups. For example: if customer A buys product a, b and c and customer B buys product a, b and d then we'll group them together and show them as a group. 
 
 
 # Use Cases 
