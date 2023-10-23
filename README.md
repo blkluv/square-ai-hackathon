@@ -1,46 +1,67 @@
 # [square-ai-hackathon](https://www.youtube.com/watch?v=9OfL9H6AmhQ)
+# What it does
+**Storeguide** is a cutting-edge AI-powered solution designed to revolutionize your shopping experience and empower business owners in the retail industry. It offers a range of features for both customers and store owners, making shopping fun, efficient, and insightful.
 
-![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/assets/LOGO%20(1).png?raw=true)
- 
- ![Intro](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/website/src/assets/pacman.gif?raw=true)
+## For Customers
 
+- **Smart Navigation**: With Storeguide, you can simply tell the AI what you need, and it will pinpoint your current location within the store, providing precise directions to your desired products in your vicinity. Say goodbye to getting lost in the grocery store or spending hours searching for specific items.
 
-# A Game-Changer for Grocery Shopping and Store Management
+- **Product Lists and Locations**: If you're unsure about what to buy for a specific recipe or task, our AI can provide you with comprehensive lists of items and their exact locations in the store. This simplifies your shopping process and ensures you don't forget any essential ingredients.
 
-### Tired of getting lost in the grocery store🏪 or spending hours searching for items🛒? Look no further! Storeguide is here to revolutionize your shopping experience.
+## For Business Owners
 
-## For Shoppers:
+- **Effortless Store Layout Design**: Store owners can create or modify store layouts with ease, using a simple image click or drag-and-drop interface. The AI utilizes data from Square API, including invoices and inventory, to make suggestions on the optimal arrangement of products in the store.
 
-Say goodbye to confusion while shopping.
-- Simply tell our AI what you need, and it'll guide you to the precise location of your desired products.
-- Need help making a cake? Just ask our AI for a list of ingredients and their locations.
-## For Business Owners:
+![Adding New Items to Layout](https://github.com/M-sasank/square-ai-hackathon/blob/main/website/src/assets/addnew.gif?raw=true)
 
-* Create store layouts effortlessly with a click or drag-and-drop based on Square API data.
-* Get product arrangement suggestions to optimize your store's performance.
-* Harness the power of AI to understand customer patterns and insights.
-* Create custom gift cards for specific customer groups based on past purchase behavior.
-Shopping becomes fun and insightful with Storeguide. Try it today!
+                                       Adding New Items to Layout
 
+![Changing items](https://github.com/M-sasank/square-ai-hackathon/blob/main/website/src/assets/dnd.gif?raw=true)
 
+                                       Changing Layout
 
+- **Data-Driven Insights**: Storeguide's AI analyzes invoices and creates user graphs, enabling business owners to recognize patterns and gain valuable insights into customer behavior. These insights help in making informed decisions to enhance store performance.
 
+- **Custom Gift Cards**: Leveraging the invoice data, business owners can create custom gift cards tailored to specific user groups. When similar invoices are generated in the future, these custom gift cards can be gifted to customers, enhancing loyalty and driving sales.
 
+In summary, Storeguide offers a unique combination of convenience, data-driven decision-making, and personalization for both customers and business owners, making the shopping experience enjoyable and insightful for all.
 
-## 1)Layout Design:
-* ## Our appilicaion creates a layout to the market with a focus on user experience , for example: giving better recommendations for layout based on the invoices received from the customer (i.e the optimal placement of products).
-![](https://github.com/jashwanth0712/square-ai-hackathon/blob/main/codes/pics/Layout.png?raw=true)
+## How we built it
+- **Square APIs used**:
+    - Auth: To let any seller to connect with our app to gain insights, send gift cards and add/modify layouts.
+    - Orders: To generate orders for a customer
+    - Invoice: To generate an invoice for a customer's order
+    - Gift Cards: To send gift cards to customer groups
+    - Customers: To create/retrieve customers when placing orders
+    - Catalog: To add/retrieve store items
+    - Inventory: To check store items and display them in the layout
 
-## 2)Accessibility Features:
-* ## our application also enhances Square's accessibility by incorporating AI-driven features such as voice-guided navigation, for example: Customer gives his current location in voice as input and we'll show the shortest possible path for the customer to reach his desired product destination. 
-![](https://raw.githubusercontent.com/jashwanth0712/square-ai-hackathon/main/assets/phone.png)
-## 3)Product Graph:
-* ## Our application also provides a product graph which shows the relationship between the products based on the customer's purchase history, for example: if a customer buys a product A then he is more likely to buy product B, so we'll show the relationship between the products in the form of a graph. This is also useful for constructing layout design.
-![](https://raw.githubusercontent.com/jashwanth0712/square-ai-hackathon/main/assets/graph.png)
-## 4)Customer Segmentation:
-* ## Our application also provides customer segmentation based on the customer's purchase history and make customer groups. For example: if customer A buys product a, b and c and customer B buys product a, b and d then we'll group them together and show them as a group. 
+- **Google Cloud Tools used**:
+    - PaLM: For interaction with user, generating user graphs, calculating optimal path
+    - Google Cloud Run: For deploying containerized backends, Machine Learning and AI models used for this project
+    - Google Text-to-Speech: For generating voiceovers and voice replies to user.
 
-# Use Cases 
-* ## The Layout design allows the owner to have a better over view of the possible postions of products
-* ## the second idea gives benefit for the customer to navigte faster for his desired product.
-* ## Based on the current data present it gives special benifits/gift cards for the customers to gain attraction.
+**Technologies**: React, JavaScript, FastAPI, Docker, Google Cloud
+## Challenges we ran into
+- Working our way through the documentations of Sqaure APIs and SDKs was difficult initially
+- Accurately generating user graphs based on invoice data was quite difficult
+- Validation of PaLM responses. PaLM occasionally gives unexpected responses
+
+## Accomplishments that we're proud of
+- We are proud to have developed an innovative and cutting-edge AI-powered solution that has the potential to revolutionize the retail industry. 
+- Our uniquely themed, interactive front-end layout design of the store, that allows shop keepers to change layout anytime.
+- Our team's ability to overcome various challenges during the development process.
+
+## What we learned
+-  We aimed to create a unique solution in a competitive market, and this required a ton of research, thinking creatively, and understanding the market needs.
+- We learned how to effectively integrate third-party APIs into our application, enabling us to access and manipulate data from these services.
+-  We learned how to analyze data to recognize patterns and derive valuable insights for business owners
+- We learnt how to use PaLM AI and are now confident enough to use it in our future projects.
+
+## What's next for Storeguide
+Storeguide has so much space it can expand its reach into thereby, enhancing its capabilities, and adapting to the evolving needs of the retail market. Few of these points are:
+
+- Storeguide can continue to evolve by improving its AI capabilities. For example, a continuously improving AI and NLP models can give better customer interactions, smarter recommendations, and an even more accurate understanding of customer behavior day by day.
+- Storeguide can get integrate other Square endpoints such as, Loyalty Program, Payments, etc.
+- The application can be expanded beyond grocery stores to clothing stores, electronics stores, or even larger department stores.
+-  Implementing a feedback system where customers can rate their shopping experiences and provide suggestions
